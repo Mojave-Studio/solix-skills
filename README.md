@@ -10,10 +10,10 @@ Kimi, and any agent that can read a `SKILL.md`.
 
 ```sh
 # Into a Solix host (imports every skill in this repo):
-solix skill add mojavestudio/solix-skills
+solix skill add Mojave-Studio/solix-skills
 
 # Or standalone — clone and link into your agent's skills dir:
-git clone https://github.com/mojavestudio/solix-skills ~/.config/solix-skills
+git clone https://github.com/Mojave-Studio/solix-skills ~/.config/solix-skills
 ~/.config/solix-skills/install.sh
 ```
 
@@ -35,7 +35,7 @@ overwrites — existing directories are skipped.
 > 2. For each name `solix`, `solix:first-mate`, `solix:join`, `solix:handoff`:
 >    ```sh
 >    mkdir -p "<skills-dir>/<name>"
->    curl -fsSL "https://raw.githubusercontent.com/mojavestudio/solix-skills/main/<name>/SKILL.md" \
+>    curl -fsSL "https://raw.githubusercontent.com/Mojave-Studio/solix-skills/main/<name>/SKILL.md" \
 >         -o "<skills-dir>/<name>/SKILL.md"
 >    ```
 > 3. If your platform can't resolve skill names containing `:` — skip those
