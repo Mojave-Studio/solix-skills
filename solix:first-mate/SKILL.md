@@ -55,6 +55,27 @@ task, relevant paths, expected output, and a stopping condition. Read results
 before acting on them. Escalate requests for judgment or approval to the user;
 do not silently approve on the user's behalf.
 
+## Track work in GitHub issues
+
+Every unit of work the First Mate owns or delegates gets a GitHub issue —
+the ledger lives where the code lives, not in chat memory.
+
+```text
+cd <project path>
+gh repo view --json nameWithOwner -q .nameWithOwner   # owning repo
+gh issue create --repo <owner/repo> --title "<task>" --body "<scope, worker, stopping condition>"
+gh issue comment <n> --repo <owner/repo> --body "<update>"
+gh issue close <n> --repo <owner/repo> --comment "<outcome + artifacts>"
+```
+
+- Open the issue before delegating; put `#<n>` in the worker's brief so its
+  `solix:assign` updates cite it.
+- Relay each worker `UPDATE —`/`DONE —` to the issue as a comment; close on
+  completion with the outcome and artifact paths.
+- No GitHub remote on the project? `solix git init <path>` can publish it —
+  ask the user first. If they decline, track in `solix memory` instead and
+  say so.
+
 ## Route work
 
 Pick the provider, model, and effort deliberately — don't default to the

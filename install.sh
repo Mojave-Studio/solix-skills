@@ -4,7 +4,7 @@
 set -eu
 
 SRC="$(cd "$(dirname "$0")" && pwd)"
-SKILLS="solix solix:first-mate solix:join solix:handoff"
+SKILLS="solix solix:first-mate solix:join solix:handoff solix:assign"
 
 DIRS="$HOME/.agents/skills
 $HOME/.claude/skills

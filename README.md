@@ -32,7 +32,7 @@ overwrites — existing directories are skipped.
 >
 > 1. Identify your skills directory from the list above (or your platform's
 >    documented equivalent). On Linux/macOS `~` is the user's home.
-> 2. For each name `solix`, `solix:first-mate`, `solix:join`, `solix:handoff`:
+> 2. For each name `solix`, `solix:first-mate`, `solix:join`, `solix:handoff`, `solix:assign`:
 >    ```sh
 >    mkdir -p "<skills-dir>/<name>"
 >    curl -fsSL "https://raw.githubusercontent.com/Mojave-Studio/solix-skills/main/<name>/SKILL.md" \
@@ -51,6 +51,7 @@ overwrites — existing directories are skipped.
 | `solix:first-mate` | commandeers the current agent as the First Mate orchestrator — crew management, routing charter (locality → capacity → cost → measured runs) |
 | `solix:join` | attach the current chat to a Solix project — adopts its path, working files, secret permits, and provider |
 | `solix:handoff` | write a durable handoff note into Solix memory for the next agent |
+| `solix:assign` | put this thread under First Mate supervision — announce the task, stream milestone updates into its terminal, close out with DONE or HANDOFF |
 
 A project-specific command (`/solix:<project>`) is just a copy of
 `solix:join` with the project name baked in.
