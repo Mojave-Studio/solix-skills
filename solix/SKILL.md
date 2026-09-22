@@ -68,6 +68,8 @@ Slash commands in the `solix:` namespace act on THIS chat:
   /solix:first-mate   commandeer this agent as the First Mate orchestrator
   /solix:join <proj>  add this chat to a Solix project
   /solix:handoff      leave a durable note for the next agent
+  /solix:revive       hand this chat's work to a fresh successor before
+                      context runs out
 
 Projects get their own slash command by copying `solix:join` into a skill
 dir named `solix:<project>` with the name baked in — see `solix skill show

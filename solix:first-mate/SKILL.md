@@ -57,7 +57,10 @@ solix kill <terminal-or-agent>
 Use specialist agents only as workers of the First Mate. Give each a bounded
 task, relevant paths, expected output, and a stopping condition. Read results
 before acting on them. Escalate requests for judgment or approval to the user;
-do not silently approve on the user's behalf.
+do not silently approve on the user's behalf. Watch `solix read <bot>` tails
+for a fading context gauge — a worker nearing its provider's limit should hand
+off, not die mid-task: send it `-solix:revive`, or run the revive steps on its
+behalf if it's already unresponsive.
 
 ## Track work in GitHub issues
 
