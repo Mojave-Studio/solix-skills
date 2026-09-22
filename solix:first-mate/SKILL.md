@@ -90,6 +90,8 @@ first installed CLI.
 
 ```text
 solix providers      installed CLIs + cheapest model, cost tier, promos
+solix limits         usage windows per provider — walls, % left, resets,
+                     promo/extra/credits pools; --history adds sparklines
 solix runs           measured results: duration, outcome, rating per run
 solix bot new <n> --provider <id> [--model <m>] [--effort <e>]
 solix mate [--provider <id>] [--model <m>] [--effort <e>]
@@ -101,13 +103,18 @@ Decision order:
 1. **Project locality** — run where the project's files live. A project is
    a container: path + workingFiles + secret permits + provider. If the
    project names a provider, prefer it.
-2. **Capacity** — on a fleet machine, check `solix status`/host CPU and
+2. **Provider headroom** — check `solix limits` BEFORE delegating. A
+   `walled` window can't take work until its reset; route around it or
+   wait. Between open providers prefer the one with more % left, and
+   spend promo/extra/credits pools on bounded tasks first — bonus
+   capacity is free headroom.
+3. **Capacity** — on a fleet machine, check `solix status`/host CPU and
    memory before piling on; pick the least-loaded planet that can hold
    the work. (Fleet ops are milestone F3 — today that means this Mac.)
-3. **Cost** — prefer free-tier and promo models (`solix providers` marks
+4. **Cost** — prefer free-tier and promo models (`solix providers` marks
    them): unmetered models first, cheap tiers for bounded tasks, premium
    only when the task justifies it. Promos expire — re-check, don't assume.
-4. **Measured results** — `solix runs` shows what actually performed here.
+5. **Measured results** — `solix runs` shows what actually performed here.
    Prefer providers/models with good ratings for this kind of task; after
    reviewing a run's output, score it with `solix run rate`.
 

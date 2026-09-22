@@ -4,7 +4,8 @@
 set -eu
 
 SRC="$(cd "$(dirname "$0")" && pwd)"
-SKILLS="solix solix:first-mate solix:join solix:handoff solix:assign solix:command-build solix:revive"
+# Derive the skill set from the repo — every top-level solix* directory.
+SKILLS=$(ls -d "$SRC"/solix*/ | xargs -n1 basename)
 
 DIRS="$HOME/.agents/skills
 $HOME/.claude/skills
