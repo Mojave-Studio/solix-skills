@@ -55,7 +55,7 @@ overwrites — existing directories are skipped.
 | `solix:command-build` | save a shell command as a Flight Plan so Solix can open and run it as a plain terminal later — no agent chat needed |
 | `solix:revive` | hand this chat's work to a fresh successor bot before running out of context — handoff, spawn, brief, exit cleanly |
 | `solix:git` | drive the user's git repos through `solix git` — status, diff, AI-drafted commits, branches, pull requests, push; plain-speech requests map to ops |
-| `solix:helm` | manage the user's Helm registers — commands, documents, skills, secrets, values, rules — through one verb-object grammar (`solix command new`, `solix secret read`, …) |
+| `solix:helm` | manage the user's Helm registers — commands, skills, secrets, values, rules — through one verb-object grammar (`solix command new`, `solix secret read`, …) |
 
 A project-specific command (`/solix:<project>`) is just a copy of
 `solix:join` with the project name baked in.

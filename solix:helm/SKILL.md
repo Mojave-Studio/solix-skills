@@ -1,6 +1,6 @@
 ---
 name: solix:helm
-description: Manage the user's Helm registers — commands, documents, skills, secrets, values, and rules — through one verb-object grammar. Create, read, edit, use, rename, or delete any register entry from the solix CLI.
+description: Manage the user's Helm registers — commands, skills, secrets, values, and rules — through one verb-object grammar. Create, read, edit, use, rename, or delete any register entry from the solix CLI.
 argument-hint: "[verb-object + args — e.g. read-command, new-command deploy, use-command deploy]"
 ---
 
@@ -13,7 +13,7 @@ skill per action.
 ## The grammar
 
 `<verb>-<object>` where verb is `new`, `read`, `edit`, `use`, `rename`,
-`delete` and object is `command`, `document`, `skill`, `secret`, `value`,
+`delete` and object is `command`, `skill`, `secret`, `value`,
 `rule`. The CLI spells it `<object> <action>`:
 
 ```text
@@ -23,15 +23,6 @@ edit-command     → solix command new <name> --cmd "…"   (upserts by name)
 use-command      → solix command run <name> [--var k=v]…   (opens a shell)
 rename-command   → solix command rename <old> <new>
 delete-command   → solix command rm <name>
-
-new-document     → solix document new <name>          (body on stdin)
-read-document    → solix document list / show <name>
-edit-document    → solix document new <name>          (stdin overwrites)
-use-document     → solix send <bot> "$(solix document show <name>)"
-                   — or cite the file: `solix document` bodies live at
-                   ~/Library/Application Support/Solix/Outlines/<name>.md
-rename-document  → solix document rename <old> <new>
-delete-document  → solix document rm <name>
 
 new-skill        → write a <name>/SKILL.md dir, then `solix skill add <path>`
 read-skill       → solix skill list / show <name>
@@ -69,7 +60,7 @@ delete-rule      → solix rule rm <id|name>
 
 ## Variables
 
-Command and document bodies may carry `{{name}}` placeholders. At `run`
+Command bodies may carry `{{name}}` placeholders. At `run`
 time the host substitutes them from the Values register; `--var k=v` on
 `solix command run` overrides for that one run. Unknown `{{name}}`s stay
 literal — check `solix command show <name>` (its `vars` line) against
