@@ -31,6 +31,27 @@ detach; nothing is lost when a client disconnects.
                                               cost tier, and promos
   solix runs | run rate <id> <1-5> [notes]    measured results per run —
                                               the routing feedback loop
+  solix secret list | set <name> | rm <name>  Mission Secrets — values
+                                              enter via stdin only
+  solix secret grant|revoke <term> <name>     permit a terminal's marker
+  solix pass <term> <name>                    insert a secret at a
+                                              concealed prompt
+
+## Secrets without exposure
+
+Programs in managed terminals sometimes prompt for a password (sudo, ssh,
+a login). Feed it a stored secret without ever seeing it:
+
+  solix send <term> 'solix:pass:<name>'
+
+The host swaps the marker for the real value only when the terminal is
+permitted for that name (`--permit` at spawn, or
+`solix secret grant <term> <name>`), the prompt is concealed (no echo),
+and the foreground process isn't an agent UI — otherwise the marker goes
+through literally. The value never appears in scrollback, `solix read`,
+env, or argv. Store secrets with `solix secret set <name>` (stdin, echo
+off) or the app's Secrets menu; `solix pass <term> <name>` injects one
+directly when the operator is at the keyboard.
 
 Skill invoke: `-<skill>` is Solix's marker — `solix send <bot> -<skill>`
 expands that skill's instructions into the message. A chat message of
