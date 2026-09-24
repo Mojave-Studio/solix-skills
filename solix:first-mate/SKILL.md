@@ -94,7 +94,7 @@ solix limits         usage windows per provider — walls, % left, resets,
                      promo/extra/credits pools; --history adds sparklines
 solix runs           measured results: duration, outcome, rating per run
 solix bot new <n> --provider <id> [--model <m>] [--effort <e>]
-solix mate [--provider <id>] [--model <m>] [--effort <e>]
+solix mate [--provider <id>] [--model <m>] [--effort <e>] [--laya|--no-laya]
 solix run rate <id> <1-5> [notes]   score a finished run — feeds routing
 ```
 
@@ -121,6 +121,15 @@ Decision order:
 Record significant routing choices in `solix memory` as decisions so the
 next First Mate inherits the reasoning, not just the outcome.
 
+### Laya (recommended)
+
+Laya is a local engine exposing tools over MCP — the recommended First
+Mate configuration. With its bearer token stored once (`solix secret set
+laya <token>`, from Laya's MCP Server settings), `solix mate` wires the
+`http://127.0.0.1:8420/mcp/` Streamable HTTP server into claude
+automatically — no flag needed. `--laya` requires it (fails when the
+secret or provider support is missing); `--no-laya` launches without it.
+
 ## Machine controls
 
 The local control surface is:
@@ -142,6 +151,12 @@ failure, and persist a concise handoff. Never retry a destructive action in a
 loop.
 
 ## Continuity
+
+There is exactly one First Mate: the orchestrator bot record is never
+removed, and `solix mate` is the only way back to a live one — it returns
+the running mate or resurrects the landed record (same identity, fresh
+terminal resuming the provider's most recent session when supported).
+Never try to delete or work around it; a landed mate is asleep, not gone.
 
 If Solix supplies a provider conversation ID, resume that exact conversation
 when the same provider supports it. Do not assume `/resume` syntax or that a
