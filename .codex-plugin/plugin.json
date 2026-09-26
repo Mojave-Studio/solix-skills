@@ -1,0 +1,31 @@
+{
+  "name": "solix",
+  "version": "1.0.0",
+  "description": "The Solix skill set: persistent terminals, a bot crew, the First Mate orchestrator, projects, and shared memory — for any coding agent.",
+  "author": {
+    "name": "Mojave Studio",
+    "url": "https://mojave.studio"
+  },
+  "homepage": "https://solix.fyi",
+  "repository": "https://github.com/Mojave-Studio/solix-skills",
+  "license": "MIT",
+  "keywords": ["solix", "agents", "terminals", "orchestration", "remote"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Solix",
+    "shortDescription": "Drive a Solix host",
+    "longDescription": "Persistent terminals, a bot crew, the First Mate orchestrator, and shared memory — reachable through the solix CLI.",
+    "developerName": "Mojave Studio",
+    "category": "Productivity",
+    "capabilities": ["Skills"],
+    "websiteURL": "https://solix.fyi",
+    "defaultPrompt": [
+      "List my Solix terminals and their states.",
+      "Attach this chat to my Solix project.",
+      "Write a handoff note into Solix memory."
+    ],
+    "brandColor": "#111111",
+    "composerIcon": "./assets/wordmark-light.png",
+    "logo": "./assets/wordmark-light.png"
+  }
+}

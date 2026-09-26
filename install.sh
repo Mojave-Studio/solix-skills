@@ -4,8 +4,8 @@
 set -eu
 
 SRC="$(cd "$(dirname "$0")" && pwd)"
-# Derive the skill set from the repo — every top-level solix* directory.
-SKILLS=$(ls -d "$SRC"/solix*/ | xargs -n1 basename)
+# Derive the skill set from the repo — every skills/ subdirectory.
+SKILLS=$(ls -d "$SRC"/skills/*/ | xargs -n1 basename)
 
 DIRS="$HOME/.agents/skills
 $HOME/.claude/skills
@@ -29,7 +29,7 @@ for dir in $DIRS; do
             if [ -e "$target" ]; then
                 echo "skip  $target (exists)"
             else
-                ln -s "$SRC/$skill" "$target"
+                ln -s "$SRC/skills/$skill" "$target"
                 echo "link  $target"
             fi
         done

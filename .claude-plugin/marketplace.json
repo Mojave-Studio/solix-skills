@@ -1,0 +1,17 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "solix-skills",
+  "description": "The Solix skill set — teach any coding agent to drive a Solix host.",
+  "owner": {
+    "name": "Mojave Studio",
+    "url": "https://github.com/Mojave-Studio"
+  },
+  "plugins": [
+    {
+      "name": "solix",
+      "description": "Drive a Solix host: persistent terminals, a bot crew, the First Mate orchestrator, and shared memory.",
+      "source": "./",
+      "category": "productivity"
+    }
+  ]
+}

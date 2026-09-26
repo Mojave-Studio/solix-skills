@@ -1,0 +1,9 @@
+{
+  "name": "solix",
+  "version": "1.0.0",
+  "description": "The Solix skill set: persistent terminals, a bot crew, the First Mate orchestrator, projects, and shared memory — for any coding agent.",
+  "author": {
+    "name": "Mojave Studio",
+    "url": "https://mojave.studio"
+  }
+}
