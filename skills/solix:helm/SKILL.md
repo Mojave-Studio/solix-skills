@@ -6,7 +6,7 @@ argument-hint: "[verb-object + args — e.g. read-command, new-command deploy, u
 
 # Solix Helm
 
-The Helm is the user's persistent rig: six registers of named objects stored
+The Helm is the user's persistent rig: five registers of named objects stored
 on the host. Everything below is a `solix` CLI call — one grammar, not a
 skill per action.
 

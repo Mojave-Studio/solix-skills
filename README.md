@@ -12,33 +12,65 @@
 </p>
 
 <p align="center">
+  <a href="https://solix.fyi"><strong>solix.fyi</strong></a> ·
+  <a href="#get-the-app">Get the app</a> ·
+  <a href="#install-the-skills">Install the skills</a> ·
+  <a href="#the-skills">The skills</a>
+</p>
+
+<p align="center">
   <img src="https://img.shields.io/github/stars/Mojave-Studio/solix-skills?style=flat-square&color=111111&label=stars" alt="Stars">
-  <img src="https://img.shields.io/badge/skills-11-111111?style=flat-square" alt="11 skills">
+  <img src="https://img.shields.io/badge/skills-14-111111?style=flat-square" alt="14 skills">
   <img src="https://img.shields.io/badge/works%20with-any%20SKILL.md%20agent-111111?style=flat-square" alt="Works with any SKILL.md agent">
   <img src="https://img.shields.io/badge/license-MIT-111111?style=flat-square" alt="MIT license">
 </p>
 
 ---
 
-The Solix skill set — agent-agnostic instructions that teach any coding agent
-to drive a [Solix](https://solix.fyi) host: persistent terminals, a bot crew,
-the First Mate orchestrator, projects as containers, and provider-agnostic
-memory. Works with Devin, Claude Code, Codex, Copilot, Cursor, Grok, Gemini,
-Kimi, and any agent that can read a `SKILL.md`.
+## What is Solix?
+
+[**Solix**](https://solix.fyi) puts your Mac's terminals, agents, and controls
+on your iPhone. Open a terminal, guide a coding agent, or control your Mac
+from your phone, over Wi-Fi or [Tailscale](https://tailscale.com). Send a
+task and watch it finish. Your Mac stays where it is.
+
+These skills are the agent side of Solix. They're plain `SKILL.md`
+instructions that teach any coding agent to drive a Solix host through its
+`solix` CLI: persistent terminals, a bot crew, the First Mate orchestrator,
+projects, shared memory, and the Helm registers. They work with Claude Code,
+Codex, Devin, Copilot, Cursor, Grok, Gemini, Kimi, and any other agent that
+reads a `SKILL.md`.
+
+## The Solix apps
+
+| App | What it does |
+|---|---|
+| **Solix for Mac** | The host: a menu-bar app plus the `solix` CLI. It keeps terminals and agents running, and handles pairing, trusted networks, keep-awake, and the First Mate. Apple silicon. |
+| **Solix for iPhone** | The companion app: live terminals, your agent crew, the Helm (commands, skills, secrets, Git), and Mac controls such as status, keep-awake, brightness, and lock. |
+| **Solix host for Windows** | A single binary with no installer. Run it and keep it running. |
+| **Solix host for Linux** | A single binary, with an optional systemd user unit. |
+
+Downloads, setup steps, and the privacy policy are at
+**[solix.fyi](https://solix.fyi)**. Agents can read
+[solix.fyi/llms.txt](https://solix.fyi/llms.txt) for a Markdown map of the site.
 
 ## Get the app
 
-The skills drive a Solix host — grab the app first:
+The skills need a running Solix host. On a Mac:
 
 ```sh
 curl -fLO https://solix.fyi/Solix-macOS.zip && unzip Solix-macOS.zip && cd Solix
-xattr -dr com.apple.quarantine Solix.app   # signed run-locally, not notarized
-open Solix.app                           # menu bar — keep it running
-./solix install                          # CLI → ~/.local/bin · app + login agent
+xattr -dr com.apple.quarantine Solix.app   # signed for local use, not notarized
+open Solix.app                             # menu bar; keep it running
+./solix install                            # CLI to ~/.local/bin, app + login agent
 ```
 
-Then pair your iPhone from the app. Windows and Linux hosts are single
-binaries — install steps at [solix.fyi](https://solix.fyi/#get).
+Then pair your iPhone from the menu bar. Windows and Linux hosts are single
+binaries; see [solix.fyi](https://solix.fyi/#get) for their steps.
+
+> **Security:** Only remove the quarantine attribute if you trust the
+> download. Use a trusted LAN or Tailscale. The host uses authenticated but
+> unencrypted transport, so never expose it directly to the public internet.
 
 ## Install the skills
 
@@ -113,14 +145,14 @@ It scans `~/.config/devin/skills`, `~/.claude/skills`, `~/.codex/skills`,
 | skill | what it does |
 |---|---|
 | `solix` | the `solix` CLI surface — commands, vocabulary, the `-<skill>` invoke marker. Base fallback for providers without `:` skill names: `/solix first-mate`, `/solix join <project>`, `/solix handoff` |
-| `solix:first-mate` | commandeers the current agent as the First Mate orchestrator — crew management, routing charter (locality → capacity → cost → measured runs) |
+| `solix:first-mate` | commandeers the current agent as the First Mate orchestrator — crew management, routing charter (locality → headroom → capacity → cost → measured runs) |
 | `solix:join` | attach the current chat to a Solix project — adopts its path, working files, secret permits, and provider |
 | `solix:handoff` | write a durable handoff note into Solix memory for the next agent |
 | `solix:assign` | put this thread under First Mate supervision — announce the task, stream milestone updates into its terminal, close out with DONE or HANDOFF |
-| `solix:command-build` | save a shell command as a Flight Plan so Solix can open and run it as a plain terminal later — no agent chat needed |
+| `solix:command-build` | save a shell command to the Commands register so Solix can open and run it as a plain terminal later — no agent chat needed |
 | `solix:revive` | hand this chat's work to a fresh successor bot before running out of context — handoff, spawn, brief, exit cleanly |
 | `solix:git` | drive the user's git repos through `solix git` — status, diff, AI-drafted commits, branches, pull requests, push; plain-speech requests map to ops |
-| `solix:helm` | manage the user's Helm registers — commands, skills, secrets, values, rules — through one verb-object grammar (`solix command new`, `solix secret read`, …) |
+| `solix:helm` | manage the user's Helm registers — commands, skills, secrets, values, rules — through one verb-object grammar (`solix command new`, `solix secret set`, …) |
 | `solix:flight-plan` | work a flight plan — a queued checklist fed to assigned terminals; details and outcomes recorded in the shared doc |
 | `solix:usage` | read usage across every linked provider — windows, % left, resets, walls, promo pools, and measured run results |
 | `solix:agents` | audit and unify agent instruction files (`AGENTS.md`, `CLAUDE.md`, …) onto one canonical file per scope |

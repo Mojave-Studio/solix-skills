@@ -1,12 +1,12 @@
 ---
 name: solix:command-build
-description: Save a shell command to the Solix Flight Plans register so it can be opened and run later as a plain terminal — no agent chat required. Use when the user wants a reusable one-tap/one-command shortcut (a build, a deploy step, a log tail) rather than something an agent needs to reason about each time.
+description: Save a shell command to the Solix Commands register so it can be opened and run later as a plain terminal — no agent chat required. Use when the user wants a reusable one-tap/one-command shortcut (a build, a deploy step, a log tail) rather than something an agent needs to reason about each time.
 argument-hint: "<name> — what the command should do"
 ---
 
 # Solix Command Build
 
-A Flight Plan is a saved shell command Solix can open in a terminal on
+A saved command is a shell command Solix can open in a terminal on
 demand — the host runs it like any other terminal, it just didn't need
 retyping. It is not an agent: nothing reads or reasons about the output,
 it is exactly `solix new --cmd "<the command>"` with a name attached.
@@ -29,11 +29,11 @@ script, not when they want an agent watching a task.
    - `solix command run <name>` — opens a terminal on the host and runs it
      immediately, from wherever they already have a shell.
    - From inside the `solix` TUI: `^G h` opens the Helm dashboard, select
-     Flight Plans, press Enter on the row.
-   - `solix helm` — the standalone Helm dashboard, same Flight Plans list,
-     runnable without the TUI multiplexer running first.
-   - The Mac app's Helm window, or the Crew app's Helm tab, under Flight
-     Plans — tap it, it opens the same way.
+     the command list (labelled FLIGHT PLANS there), press Enter on the row.
+   - `solix helm` — the standalone Helm dashboard, same list, runnable
+     without the TUI multiplexer running first.
+   - The iPhone app's Helm tab, under Commands — tap it, it opens the
+     same way.
 
 Editing later: `solix command new <name> --cmd "…"` again overwrites the
 body (matched by name); `solix command rename <old> <new>` renames without

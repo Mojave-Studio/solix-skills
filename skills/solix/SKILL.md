@@ -64,17 +64,18 @@ decide) · landed (finished) · drifting (quiet) · dark (unknown).
 The roster lists only live terminals: dead rows are reaped on read, and
 interactive foreign shells (Terminal.app, iTerm, VS Code, tmux, sshd)
 are discovered automatically — `solix register <pid>` is only needed for
-unusual cases. Attaching an external terminal opens a managed shell in
-its working directory — Solix never takes over a foreign PTY, so input
-and resize still go through the managed shell.
+unusual cases. Attaching an external terminal mirrors its window's
+screen read-only (Terminal and iTerm) — Solix never takes over a foreign
+PTY, so `solix send` refuses it; spawn a managed shell for input.
 
 The First Mate is permanent: its bot record is never removed, and
 `solix mate` always returns the one official orchestrator — live if one
 is running, resurrected (same record, provider's most recent session
-resumed when supported) if it landed. Laya's local MCP server is the
-recommended mate configuration — once the `laya` secret holds its
-bearer token (`solix secret set laya <token>`), `solix mate` wires it
-into claude automatically (`--laya` requires it, `--no-laya` skips it).
+resumed when supported) if it landed. [Laya](https://laya.aay.sh/)'s
+local MCP server is the recommended mate configuration — once the `laya`
+secret holds its token (`solix secret set laya <token>`), `solix mate`
+wires it into claude automatically unless the menu bar's Laya toggle is
+off (`--laya` requires it, `--no-laya` skips it).
 
 ## /solix:* subcommands
 

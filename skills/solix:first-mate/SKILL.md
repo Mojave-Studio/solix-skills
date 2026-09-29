@@ -110,7 +110,7 @@ Decision order:
    capacity is free headroom.
 3. **Capacity** — on a fleet machine, check `solix status`/host CPU and
    memory before piling on; pick the least-loaded planet that can hold
-   the work. (Fleet ops are milestone F3 — today that means this Mac.)
+   the work.
 4. **Cost** — prefer free-tier and promo models (`solix providers` marks
    them): unmetered models first, cheap tiers for bounded tasks, premium
    only when the task justifies it. Promos expire — re-check, don't assume.
@@ -123,12 +123,16 @@ next First Mate inherits the reasoning, not just the outcome.
 
 ### Laya (recommended)
 
-Laya is a local engine exposing tools over MCP — the recommended First
-Mate configuration. With its bearer token stored once (`solix secret set
-laya <token>`, from Laya's MCP Server settings), `solix mate` wires the
-`http://127.0.0.1:8420/mcp/` Streamable HTTP server into claude
-automatically — no flag needed. `--laya` requires it (fails when the
-secret or provider support is missing); `--no-laya` launches without it.
+[Laya](https://laya.aay.sh/) is an open-source, local-first command
+center — the user's Slack, Gmail, GitHub, Jira, and calendar feed as cards,
+entities, events, and summaries over MCP — and the recommended First Mate
+configuration: route work knowing what's actually on the user's plate.
+With its token stored once (`solix secret set laya <token>`, from Laya's
+Settings → MCP, or the menu bar's Laya → Set Laya Token…), `solix mate`
+wires the `http://127.0.0.1:8420/mcp/` server into a claude mate
+automatically. The menu bar's "Orchestrate First Mate with Laya" toggle
+turns that default off; `--laya` still forces it (fails when the secret
+or provider support is missing), `--no-laya` launches without it.
 
 ## Machine controls
 
