@@ -19,3 +19,11 @@ curl -fsSL "https://raw.githubusercontent.com/Mojave-Studio/solix-skills/main/sk
 Or clone the repo and run `./install.sh` to link every skill into every agent
 skills directory it finds. See [README.md](README.md) for the full install
 matrix and the skill list.
+
+## Workspace standards
+
+- Comments: follow the code-comment-writer skill (<https://skills.rest/skill/code-comment-writer>). Why over what, minimal, no commented-out code.
+- UI/design work: use design-taste-frontend, gpt-taste, impeccable (<https://www.tasteskill.dev/>).
+- Always use graphify for codebase questions (`graphify query "<q>"` before raw browsing); `graphify update .` after code changes.
+- Long-form docs live in the Obsidian vault (`~/Documents/Obsidian Vault/<project-folder>/`); code keeps a one-line pointer. Extend an existing related note; group docs by feature, never a doc per issue.
+- Never place files directly in `~/developer` or `~/developer/Code`; everything goes inside a project folder.
