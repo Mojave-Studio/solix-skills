@@ -168,6 +168,37 @@ automatically. The menu bar's "Orchestrate First Mate with Laya" toggle
 turns that default off; `--laya` still forces it (fails when the secret
 or provider support is missing), `--no-laya` launches without it.
 
+### When Paperclip is wired
+
+[Paperclip](https://github.com/paperclipai/paperclip) runs a company of
+agents (org chart, issues, heartbeats, budgets). Wired in, the First Mate is
+its CEO and every other Paperclip agent is a Solix bot:
+
+```text
+solix secret set paperclip                    the CEO agent's API key (POST /api/agents/<id>/keys)
+solix value set paperclip-company <companyId>
+solix value set paperclip-agent <ceoAgentId>
+solix value set paperclip-url http://127.0.0.1:3100/api   (default)
+solix secret set paperclip-<agentId>          each employee's key
+solix value set paperclip-bot.<agentId> <bot> optional bot-name override
+```
+
+With the secret + company value stored, a claude mate gets the `paperclip`
+MCP server (`npx -y @paperclipai/mcp-server`) automatically; `--paperclip`
+forces it, `--no-paperclip` skips it. In Paperclip each agent's adapter is
+`process` with command `solix paperclip wake`, so a heartbeat types
+`[paperclip] wake <reason> task=<id> comment=<id>` into your terminal (or a
+worker's — spawned under the agent's name if missing). Follow Paperclip's
+heartbeat protocol over MCP: inbox → checkout → work → update. A refused
+checkout (409) means someone owns it — pick other work. Delegate by creating
+Paperclip issues assigned to agents; that wakes their bots. Off-books work
+still goes to `solix bot new --parent`.
+
+Install the protocol skill from a Paperclip clone:
+`solix skill add <clone>/skills/paperclip`. (`solix skill add
+paperclipai/paperclip` works too but imports every SKILL.md in the repo,
+~30 skills.)
+
 ## Machine controls
 
 The local control surface is:

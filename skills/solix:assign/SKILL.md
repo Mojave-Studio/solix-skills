@@ -32,6 +32,8 @@ solix send <mate> "UPDATE — <what just landed / what changed / blocker>"
 - Landed work, plan changes, blockers, and anything needing a decision.
 - If the First Mate gave you an issue number, cite it — `"UPDATE — #<n>
   <progress>"` — so the relay lands on the GitHub issue.
+- A refused issue claim (`alreadyClaimed`) means another bot owns it —
+  don't retry, pick other work.
 - Keep each update to one or two lines; transcripts belong to the terminal,
   not the orchestrator's input queue.
 - Never send secrets or secret values — names are permits only.
