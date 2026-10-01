@@ -29,7 +29,7 @@ script, not when they want an agent watching a task.
    - `solix command run <name>` — opens a terminal on the host and runs it
      immediately, from wherever they already have a shell.
    - From inside the `solix` TUI: `^G h` opens the Helm dashboard, select
-     the command list (labelled FLIGHT PLANS there), press Enter on the row.
+     the COMMANDS tab, press Enter on the row.
    - `solix helm` — the standalone Helm dashboard, same list, runnable
      without the TUI multiplexer running first.
    - The iPhone app's Helm tab, under Commands — tap it, it opens the

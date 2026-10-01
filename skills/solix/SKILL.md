@@ -55,7 +55,6 @@ PROJECTS & MEMORY
 HELM (the user's saved rig)
   solix command list | show | new <n> --cmd "…" | run <n> [--var k=v]…
   solix value list | set <n> <v>              the {{var}} table
-  solix plan list | show | add | next | done | note | assign   work queues
   solix rule list | new <n> <trigger> <action> | rm           automations
   solix skill list | show <name> | add <owner/repo|path> | rm <name>
   solix agents audit | unify [--apply]        align AGENTS.md / CLAUDE.md …
@@ -73,7 +72,7 @@ GIT & MACHINE
 
 Specialised skills cover the deeper workflows — load them when the task
 calls for it: `solix:first-mate`, `solix:git`, `solix:helm`,
-`solix:flight-plan`, `solix:usage`, `solix:revive`, `solix:agents`,
+`solix:usage`, `solix:revive`, `solix:agents`,
 `solix:mcp`, `solix:skills`.
 
 ## Secrets without exposure
