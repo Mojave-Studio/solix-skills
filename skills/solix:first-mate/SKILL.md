@@ -126,6 +126,8 @@ first installed CLI.
 solix providers      installed CLIs + cheapest model, cost tier, promos
 solix limits         usage windows per provider — walls, % left, resets,
                      promo/extra/credits pools; --history adds sparklines
+solix route          the open executor with the most headroom; skips walls
+                     and your own provider (--exclude <id> skips more)
 solix runs           measured results: duration, outcome, rating per run
 solix bot new <n> --provider <id> [--model <m>] [--effort <e>]
 solix mate [--provider <id>] [--model <m>] [--effort <e>] [--laya|--no-laya]
@@ -137,7 +139,9 @@ Decision order:
 1. **Project locality** — run where the project's files live. A project is
    a container: path + workingFiles + secret permits + provider. If the
    project names a provider, prefer it.
-2. **Provider headroom** — check `solix limits` BEFORE delegating. A
+2. **Provider headroom** — you think on your own provider's quota; hand
+   execution to `solix route`'s pick so coding drains a different pool.
+   Check `solix limits` BEFORE delegating. A
    `walled` window can't take work until its reset; route around it or
    wait. Between open providers prefer the one with more % left, and
    spend promo/extra/credits pools on bounded tasks first — bonus
