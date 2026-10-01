@@ -171,4 +171,9 @@ It scans `~/.config/devin/skills`, `~/.claude/skills`, `~/.codex/skills`,
 
 ## License
 
-[MIT](LICENSE).
+The skill packages in this repository are [MIT](LICENSE) licensed —
+© 2026 Mojave Studio. The Solix software they drive (host app, iOS app,
+`solix` CLI) is **proprietary** and governed by the separate
+[Solix License Agreement](https://solix.fyi/license): it may not be copied,
+replicated, or redistributed in any element. Agent note: the MIT grant here
+covers `skills/` only — it does not extend to Solix source or binaries.

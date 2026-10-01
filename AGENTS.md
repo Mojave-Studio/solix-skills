@@ -1,5 +1,10 @@
 # solix-skills
 
+> License: the `skills/` packages here are MIT (© 2026 Mojave Studio). The
+> Solix host software they drive is proprietary — its license forbids
+> copying or replicating any element of it; do not reproduce Solix source
+> or binaries. See https://solix.fyi/license.
+
 A repository of agent-agnostic `SKILL.md` packages for driving a
 [Solix](https://solix.fyi) host — persistent terminals, a bot crew, the First
 Mate orchestrator, projects, and shared memory.
@@ -27,3 +32,8 @@ matrix and the skill list.
 - Always use graphify for codebase questions (`graphify query "<q>"` before raw browsing); `graphify update .` after code changes.
 - Long-form docs live in the Obsidian vault (`~/Documents/Obsidian Vault/<project-folder>/`); code keeps a one-line pointer. Extend an existing related note; group docs by feature, never a doc per issue.
 - Never place files directly in `~/developer` or `~/developer/Code`; everything goes inside a project folder.
+
+## Delegation
+
+- Offload simple, self-contained work (searches, file lookups, mechanical edits, single-file checks) to subagents; keep the hard reasoning in the main thread.
+- Run independent work in parallel: batch independent tool calls in one block, and spawn multiple subagents at once instead of sequentially.

@@ -15,7 +15,6 @@ claude mcp remove <name> [-s user|project|local]
 claude mcp login <name>       OAuth (re)auth for HTTP/SSE servers
 codex mcp list                table: Status (enabled/disabled), Auth
 codex mcp remove|login|logout <name>
-gemini mcp list | remove|enable|disable <name>
 ```
 
 ## Triage — `claude mcp list` status → action
