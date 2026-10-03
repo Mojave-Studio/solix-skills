@@ -40,6 +40,12 @@ value at concealed prompts only, so it never reaches you. Terminals get
 permits via `--permit <name>` at spawn or `solix secret grant <term> <name>`;
 `solix pass <term> <name>` is the operator's direct injection.
 
+The Docs register holds operator context — `solix docs list` for the shelf,
+`solix docs show <name>` to pull a body on demand. A `briefing` doc is the
+operator's standing brief: read it before routing substantive work. Docs
+marked private (`*`) open to your terminal but stay hidden from workers —
+never relay one's contents into a worker's brief.
+
 ## Run and supervise work
 
 Prefer a Solix-managed persistent terminal for work that must survive chat,

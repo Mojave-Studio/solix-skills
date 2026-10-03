@@ -1,19 +1,19 @@
 ---
 name: solix:helm
-description: Manage the user's Helm registers — commands, skills, secrets, values, and rules — through one verb-object grammar. Create, read, edit, use, rename, or delete any register entry from the solix CLI.
+description: Manage the user's Helm registers — commands, skills, secrets, values, docs, and rules — through one verb-object grammar. Create, read, edit, use, rename, or delete any register entry from the solix CLI.
 argument-hint: "[verb-object + args — e.g. read-command, new-command deploy, use-command deploy]"
 ---
 
 # Solix Helm
 
-The Helm is the user's persistent rig: five registers of named objects stored
+The Helm is the user's persistent rig: six registers of named objects stored
 on the host. Everything below is a `solix` CLI call — one grammar, not a
 skill per action.
 
 ## The grammar
 
 `<verb>-<object>` where verb is `new`, `read`, `edit`, `use`, `rename`,
-`delete` and object is `command`, `skill`, `secret`, `value`,
+`delete` and object is `command`, `skill`, `secret`, `value`, `doc`,
 `rule`. The CLI spells it `<object> <action>`:
 
 ```text
@@ -56,6 +56,15 @@ edit-rule        → solix rule new <name> …             (upserts by name)
 use-rule         → rules fire on their trigger — nothing to invoke
 rename-rule      → not supported — rm and re-new
 delete-rule      → solix rule rm <id|name>
+
+new-doc          → solix docs add note|link <title> <text|url>
+                   (vaults/folders: solix docs add vault|folder <path>)
+read-doc         → solix docs list            (titles + previews only)
+edit-doc         → solix docs add <kind> <title> …   (upserts by title)
+use-doc          → solix docs show <name|id>   (prints the body — the lazy
+                   read path; prompts carry titles, this fetches on demand)
+rename-doc       → not supported — add under the new title, rm the old
+delete-doc       → solix docs rm <name|id>
 ```
 
 ## Variables
@@ -75,3 +84,7 @@ enter through `solix:pass:` markers at a concealed prompt.
 - Deleting a command or value a setup references leaves the reference
   dangling; warn the user if `solix command list` shows a `{{var}}` that no
   value defines.
+- A `*` on a doc's kind marks it private — the operator's shelf, readable
+  only by their devices and the First Mate's terminal. Worker terminals
+  can't list, read, edit, or delete it; never relay its contents into a
+  worker's brief.
