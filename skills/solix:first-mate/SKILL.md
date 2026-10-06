@@ -126,7 +126,10 @@ gh issue close <n> --comment "<outcome + artifacts>"                            
 ## Route work
 
 Pick the provider, model, and effort deliberately — don't default to the
-first installed CLI.
+first installed CLI. Every `solix bot new` delegation names BOTH provider
+and model (`--effort` too where the CLI supports it) — a delegation without
+`--model` is a half-made routing decision. Choose the model from the
+`solix providers` list for that provider; never invent a model id.
 
 ```text
 solix providers      installed CLIs + cheapest model, cost tier, promos
@@ -152,18 +155,26 @@ Decision order:
    wait. Between open providers prefer the one with more % left, and
    spend promo/extra/credits pools on bounded tasks first — bonus
    capacity is free headroom.
-3. **Capacity** — on a fleet machine, check `solix status`/host CPU and
+3. **Model** — after the provider, pick the model from `solix providers`
+   for that provider. Tier it to the task: cheap/unmetered/promo models
+   for triage, bounded edits, and drafts; the strong tier for multi-module
+   features, security, and architecture; fast variants for interactive
+   loops. Add `--effort` the same way — low for mechanical work, high for
+   hard reasoning. A model that's walled or 402s is the same as a walled
+   provider: pick a different one and record it.
+4. **Capacity** — on a fleet machine, check `solix status`/host CPU and
    memory before piling on; pick the least-loaded planet that can hold
    the work.
-4. **Cost** — prefer free-tier and promo models (`solix providers` marks
+5. **Cost** — prefer free-tier and promo models (`solix providers` marks
    them): unmetered models first, cheap tiers for bounded tasks, premium
    only when the task justifies it. Promos expire — re-check, don't assume.
-5. **Measured results** — `solix runs` shows what actually performed here.
-   Prefer providers/models with good ratings for this kind of task; after
-   reviewing a run's output, score it with `solix run rate`.
+6. **Measured results** — `solix runs` shows what actually performed here.
+   Prefer provider+model pairs with good ratings for this kind of task;
+   after reviewing a run's output, score it with `solix run rate`.
 
-Record significant routing choices in `solix memory` as decisions so the
-next First Mate inherits the reasoning, not just the outcome.
+Record significant routing choices in `solix memory` as decisions —
+include the model, not just the provider — so the next First Mate
+inherits the reasoning, not just the outcome.
 
 ### Laya (recommended)
 
