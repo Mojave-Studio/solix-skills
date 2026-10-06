@@ -1,10 +1,64 @@
 ---
 name: solix:mcp
-description: "Tidy MCP servers across every agent CLI on this machine — find failed, redundant, and disabled servers, remove the dead ones, and reauthorize expired OAuth. Use when asked to clean up, dedupe, fix, or reauth MCPs, or when an agent reports an MCP 'Needs authentication' or 'Failed to connect'."
-argument-hint: "[check | clean | reauth <name>]"
+description: "Wire Solix as a local stdio MCP server (`solix mcp`) for Claude Desktop / Cursor / Grok, or tidy MCP servers across every agent CLI — find failed, redundant, and disabled servers, remove the dead ones, and reauthorize expired OAuth. Use when asked to expose Solix to ChatGPT/Claude/Grok, add a Solix MCP connector, clean up, dedupe, fix, or reauth MCPs, or when an agent reports an MCP 'Needs authentication' or 'Failed to connect'."
+argument-hint: "[check | clean | reauth <name> | wire]"
 ---
 
-# Solix MCP — health, dedupe, reauth
+# Solix MCP — expose Solix, then health / dedupe / reauth
+
+## `solix mcp` — Solix as an MCP server
+
+`solix mcp` is a stdio MCP server on the `solix` CLI. It speaks JSON-RPC 2.0
+over stdin/stdout (newline-delimited; Content-Length framing is accepted)
+and wraps the existing host control surface (`HostConnection` →
+`HostRequestContext`). Logs belong on stderr — stdout is the protocol.
+
+### What this increment covers
+
+Local desktop clients that **launch a subprocess**:
+
+| Client | How to wire |
+|---|---|
+| **Claude Desktop** | `~/Library/Application Support/Claude/claude_desktop_config.json` → `mcpServers.solix.command = "solix"`, `args = ["mcp"]` |
+| **Claude Code** | `claude mcp add solix -- solix mcp` (user or project scope) |
+| **Cursor** | `.cursor/mcp.json` or Cursor Settings → MCP: same `command` / `args` |
+| **Grok Desktop** | MCP / plugin config with stdio command `solix` arg `mcp` (same shape as Claude) |
+| **Codex** | `codex mcp add solix -- solix mcp` if the CLI supports stdio servers |
+
+Example Claude Desktop snippet:
+
+```json
+{
+  "mcpServers": {
+    "solix": {
+      "command": "solix",
+      "args": ["mcp"]
+    }
+  }
+}
+```
+
+`solix` must be on the client's `PATH` (typically `~/.local/bin/solix` after
+`solix install`). Restart the desktop app after editing config.
+
+Tools (conservative First Mate surface): `bot_list`, `bot_read`, `bot_send`,
+`bot_new`, `terminal_list`, `terminal_read`, `wait`, `limits`, `decide`,
+`project_list`, `value_get`. **Not** exposed: secrets, env values, kill,
+value set.
+
+Handshake methods: `initialize`, `notifications/initialized`, `tools/list`,
+`tools/call`.
+
+### What still needs a later HTTP connector
+
+**ChatGPT** developer-mode connectors and Claude.ai custom connectors speak
+**Streamable HTTP over public HTTPS**. A later increment should serve these
+same tools at a URL those clients can reach, with auth. `solix mcp` is the
+stdio half of that surface.
+
+Do not print env values or headers from those configs; they hold secrets.
+
+# Health, dedupe, reauth
 
 Each CLI keeps its own MCP config; inspect every one that's installed.
 
