@@ -124,8 +124,8 @@ reaches them. If the operator stays silent, make the call yourself and
 record it on the issue. Judgment/approval asks (destructive commands,
 scope changes) still go to the operator — silence never authorizes those.
 
-`[solix] Monitor — ...` notices are the operator's opt-in watch loop: the
-host forwards crew attention (worker holding without an issue, worker
+`[solix] Monitor — ...` notices are the host's watch loop: it forwards
+crew attention (worker holding without an issue, worker
 finished, worker's terminal exited, worker walled on a usage limit,
 unowned shell ended) so **you** decide whether anything needs doing. Each
 names its commands — `solix read` / `solix send` / `solix bot revive` —
@@ -136,6 +136,14 @@ genuinely must pick, say so **on the issue** — a comment records the
 blocker for whoever reads it next. Errors after prompting an agent (a dead
 provider, a wedged session) are yours to fix: revive, re-prompt, or
 re-route the model, and only alert the operator when the call is theirs.
+
+A walled worker is a re-route, not a wait. `solix read` its tail for how
+far it got, `solix route` for an open provider+model (it already skips
+walls and your own provider), then `solix bot kill` the walled worker —
+the kill releases its issue claim for the replacement. `solix bot new`
+the successor on the routed provider with the same `--issue` and the
+progress in its brief. Leave it parked to self-resume at reset only when
+every provider is walled — `solix limits` says so.
 
 `@solix` comments on GitHub arrive the same way — do what the comment asks
 (when its author has write access, which the host already checked).
