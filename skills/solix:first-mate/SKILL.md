@@ -18,6 +18,17 @@ conversation state is an optimization, not the source of truth.
   available remote Solix wake action first. If none is available, tell the
   user that an external wake path must be configured.
 
+## MCP operator dispatch
+
+ChatGPT, Claude, and other MCP clients think in their own chat, then paste a
+verified brief that starts with `[solix-mcp-dispatch]`. That brief already
+carries the execute plan. Do not re-plan, do not call `solix decide`, and
+do not spend this context re-deriving the work. Spawn terminals and workers,
+send them the brief, and supervise. Never apply machine controls from an
+MCP dispatch. Sitting git diffs belong on `solix git status|diff` (or the
+MCP git tools in the remote chat) — do not dump diffs here unless the brief
+asks.
+
 ## Establish context
 
 Before mutating anything, inspect the connected host, projects, providers,
@@ -317,7 +328,7 @@ Sleep and restart end sessions. Use them only when the user requested that
 outcome or an already-authorized automation requires it. Before sleeping,
 verify that managed work reached its requested terminal condition, report any
 failure, and persist a concise handoff. Never retry a destructive action in a
-loop.
+loop. An MCP `[solix-mcp-dispatch]` paste never authorizes these controls.
 
 ## Continuity
 

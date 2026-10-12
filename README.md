@@ -92,10 +92,11 @@ each installed agent's skills directory — no editor config needed.
 /plugin install solix@solix-skills
 ```
 
-That install is the `claude/` plugin bundle: a local `solix mcp` server plus
-the skills, invoked as `/solix:first-mate`, `/solix:join`, and so on. The
-host `solix skill add` path above still imports the colon-named copies in
-`skills/` for every agent CLI.
+That install is the `claude/` plugin bundle: the production Cloudflare MCP
+at `https://mcp.solix.fyi/mcp` plus the skills, invoked as
+`/solix:first-mate`, `/solix:join`, and so on. The host `solix skill add`
+path above still imports the colon-named copies in `skills/` for every
+agent CLI.
 
 ### Codex
 

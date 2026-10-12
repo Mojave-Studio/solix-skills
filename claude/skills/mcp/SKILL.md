@@ -1,6 +1,6 @@
 ---
 name: mcp
-description: "Wire Solix as an MCP server (`solix mcp` stdio, `solix mcp --http --expose` for ChatGPT) so a chat can send work to First Mate, or tidy MCP servers across agent CLIs — find failed, redundant, and disabled servers, remove the dead ones, and reauthorize expired OAuth. Use when asked to expose Solix to ChatGPT/Claude/Grok, add a Solix MCP connector, clean up, dedupe, fix, or reauth MCPs, or when an agent reports an MCP 'Needs authentication' or 'Failed to connect'."
+description: "Wire Solix as an MCP server (`solix mcp` stdio, `solix mcp --cloud` to the production Cloudflare MCP, `solix mcp --http --expose` for a personal ChatGPT tunnel) so a chat can send work to First Mate, or tidy MCP servers across agent CLIs — find failed, redundant, and disabled servers, remove the dead ones, and reauthorize expired OAuth. Use when asked to expose Solix to ChatGPT/Claude/Grok, add a Solix MCP connector, clean up, dedupe, fix, or reauth MCPs, or when an agent reports an MCP 'Needs authentication' or 'Failed to connect'."
 argument-hint: "[check | clean | reauth <name> | wire]"
 ---
 
@@ -41,40 +41,49 @@ Example Claude Desktop snippet:
 `solix` must be on the client's `PATH` (typically `~/.local/bin/solix` after
 `solix install`). Restart the desktop app after editing config.
 
-Tools (conservative First Mate surface): `mate_send`, `bot_list`, `bot_read`,
-`bot_send`, `bot_new`, `terminal_list`, `terminal_read`, `wait`, `limits`,
-`decide`, `project_list`, `value_get`. **Not** exposed: secrets, env values,
-kill, value set. Operator requests in ChatGPT ("check sitting diffs on my
-machines") go through `mate_send`.
+Think in the chat. `mate_send` delivers a verified execute brief to First
+Mate (★) — compact goal, paths, stopping condition; First Mate must not
+re-plan. Spawn terminals with `terminal_new`, workers with `bot_new`;
+`bot_list` / `bot_read` / `bot_send` / `wait` for the crew. Sitting local
+git diffs: `git_repos`, `git_status`, `git_diff` (read-only). Also
+`terminal_list` / `terminal_read`, `limits`, `project_list`, `value_get`.
+**Not** exposed: secrets, env, kill, value set, decide, machine lock /
+sleep / restart / mute / volume / brightness / keep-awake.
 
 Handshake methods: `initialize`, `notifications/initialized`, `tools/list`,
 `tools/call`.
 
-### ChatGPT — Streamable HTTP
+### Production Cloudflare MCP
 
-ChatGPT cannot launch `solix mcp` as a subprocess. The public endpoint is a
-Cloudflare Worker (`solix-mcp`) that proxies `/mcp` through a **private**
-named tunnel (`solix-mcp`) to `127.0.0.1:8743`. Skypiea / UFO / opentoad are
-untouched.
+The public listing is Streamable HTTP at `https://mcp.solix.fyi/mcp` with
+OAuth (Solix account). It is multi-tenant: Claude never talks to a personal
+tunnel. The Mac (or other Solix host) opens an outbound WebSocket:
+
+```text
+solix mcp --cloud
+```
+
+First run signs in with the Solix Firebase account (email + password, same
+as the iPhone app). Later runs refresh that session from
+`~/Library/Application Support/Solix/mcp-cloud-auth.json`. Keep the process
+running. Plugin `.mcp.json` already points at `https://mcp.solix.fyi/mcp`;
+complete OAuth when the client asks.
+
+### ChatGPT — personal Streamable HTTP
+
+ChatGPT cannot launch `solix mcp` as a subprocess. For a **personal**
+connector (not the public listing), bind local HTTP and optionally expose a
+tunnel. Skypiea / UFO / opentoad are untouched.
 
 ```text
 solix mcp --http --expose
 ```
 
-`--http` binds `127.0.0.1:8743`. `--expose` runs that named tunnel (falls
-back to a quick tunnel if the Solix cloudflared config is missing). Keep
-the process running.
-
-Token: `SOLIX_MCP_TOKEN`, or `~/Library/Application Support/Solix/mcp-token`.
-ChatGPT cannot send `Authorization` headers — the process prints a connector
-URL with `?token=`. In ChatGPT pick **No authentication**.
-
-Wire it:
-
-1. Plugins → Add custom MCP server (or Settings → Apps & Connectors → Create).
-2. Name: Solix. URL: the printed `https://solix-mcp.…workers.dev/mcp?token=…`.
-   Auth: None.
-3. New chat → `@` Solix → "check on the sitting diffs on my machines".
+`--http` binds `127.0.0.1:8743`. `--expose` runs a named or quick Cloudflare
+tunnel to this machine. Token: `SOLIX_MCP_TOKEN`, or
+`~/Library/Application Support/Solix/mcp-token`. ChatGPT cannot send
+`Authorization` headers — the process prints a connector URL with `?token=`.
+In ChatGPT pick **No authentication**.
 
 `solix mcp --check` exercises initialize + tools/list without the host.
 
