@@ -118,8 +118,7 @@ purpose recently.
 
 ## Redundant
 
-- Same command + args or same URL under two names (e.g. `claude-flow` and
-  `ruflo` both `npx -y ruflo@latest mcp start`) — keep the one agents'
+- Same command + args or same URL under two names — keep the one agents'
   instructions reference, remove the other.
 - A manual server that duplicates a plugin-provided (`plugin:<p>:<name>`)
   or `claude.ai <Connector>` one — remove the manual copy; those two kinds

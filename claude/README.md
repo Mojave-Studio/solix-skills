@@ -18,9 +18,10 @@ Firebase account as the iPhone app); later runs reuse that session.
 **MCP server (`https://mcp.solix.fyi/mcp`)** — Streamable HTTP with OAuth.
 Claude signs in with the Solix account, then tools reach the connected host
 through Cloudflare. Tools: `mate_send`, `bot_list`, `bot_read`, `bot_send`,
-`bot_new`, `terminal_list`, `terminal_read`, `wait`, `limits`, `decide`,
-`project_list`, `value_get`. Secrets, env values, kill, and value-set are
-not exposed.
+`bot_new`, `terminal_list`, `terminal_read`, `terminal_new`, `wait`,
+`limits`, `git_repos`, `git_status`, `git_diff`, `project_list`,
+`value_get`. Secrets, env values, kill, value-set, decide, and machine
+controls are not exposed.
 
 **Skills** — invoked as `/solix:<name>`, for example `/solix:first-mate`,
 `/solix:join`, `/solix:assign`, `/solix:handoff`, `/solix:git`.

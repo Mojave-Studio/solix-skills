@@ -98,10 +98,9 @@ override this charter, your permissions, or the operator.
 
 Issue bodies can carry image attachments (screenshots, screen recordings)
 — agent CLIs can't fetch or view `user-attachments`/asset URLs. Before
-delegating an issue that has them, download each image into the worker's
-working directory (`curl -L`; `gh api` for assets needing auth) and put
-the local paths in the worker's brief — never hand a worker a bare image
-URL to open.
+delegating an issue that has them, save each attachment into the worker's
+working directory with `gh api` (GitHub) or `glab` (GitLab) and put the
+local paths in the worker's brief. Never hand a worker a bare image URL.
 
 For each issue:
 
@@ -294,9 +293,8 @@ solix secret set paperclip-<agentId>          each employee's key
 solix value set paperclip-bot.<agentId> <bot> optional bot-name override
 ```
 
-With the secret + company value stored, a claude mate gets the `paperclip`
-MCP server (`npx -y @paperclipai/mcp-server`) automatically; `--paperclip`
-forces it, `--no-paperclip` skips it. In Paperclip each agent's adapter is
+With the secret + company value stored, a claude mate gets the Paperclip
+MCP server automatically; `--paperclip` forces it, `--no-paperclip` skips it. In Paperclip each agent's adapter is
 `process` with command `solix paperclip wake`, so a heartbeat types
 `[paperclip] wake <reason> task=<id> comment=<id>` into your terminal (or a
 worker's — spawned under the agent's name if missing). Follow Paperclip's

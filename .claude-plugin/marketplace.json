@@ -1,7 +1,7 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "solix-skills",
-  "description": "The Solix plugin — local MCP server plus skills to drive a Solix host.",
+  "description": "The Solix plugin — production Cloudflare MCP plus skills to drive a Solix host.",
   "owner": {
     "name": "Mojave Studio",
     "url": "https://github.com/Mojave-Studio"
@@ -9,7 +9,7 @@
   "plugins": [
     {
       "name": "solix",
-      "description": "Drive a Solix host: local MCP for the crew and terminals, plus First Mate, project, git, and Helm skills.",
+      "description": "Drive a Solix host: production MCP for the crew, terminals, and sitting git diffs, plus First Mate, project, git, and Helm skills.",
       "source": "./claude",
       "category": "productivity"
     }
