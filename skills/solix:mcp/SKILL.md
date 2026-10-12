@@ -1,6 +1,6 @@
 ---
 name: solix:mcp
-description: "Wire Solix as an MCP server (`solix mcp` stdio, `solix mcp --cloud` to the production Cloudflare MCP, `solix mcp --http --expose` for a personal ChatGPT tunnel) so a chat can send work to First Mate, or tidy MCP servers across agent CLIs — find failed, redundant, and disabled servers, remove the dead ones, and reauthorize expired OAuth. Use when asked to expose Solix to ChatGPT/Claude/Grok, add a Solix MCP connector, clean up, dedupe, fix, or reauth MCPs, or when an agent reports an MCP 'Needs authentication' or 'Failed to connect'."
+description: "Wire Solix as an MCP server (`solix mcp` stdio, `solix mcp --cloud` to the production Cloudflare MCP) so a chat can send work to First Mate, or tidy MCP servers across agent CLIs — find failed, redundant, and disabled servers, remove the dead ones, and reauthorize expired OAuth. Use when asked to expose Solix to ChatGPT/Claude/Grok, add a Solix MCP connector, clean up, dedupe, fix, or reauth MCPs, or when an agent reports an MCP 'Needs authentication' or 'Failed to connect'."
 argument-hint: "[check | clean | reauth <name> | wire]"
 ---
 
@@ -10,8 +10,7 @@ argument-hint: "[check | clean | reauth <name> | wire]"
 
 `solix mcp` is a stdio MCP server on the `solix` CLI. It speaks JSON-RPC 2.0
 over stdin/stdout (newline-delimited; Content-Length framing is accepted)
-and wraps the existing host control surface (`HostConnection` →
-`HostRequestContext`). Logs belong on stderr — stdout is the protocol.
+and wraps the host control surface. Logs belong on stderr — stdout is the protocol.
 
 ### What this increment covers
 
@@ -69,21 +68,11 @@ as the iPhone app). Later runs refresh that session from
 running. Plugin `.mcp.json` already points at `https://mcp.solix.fyi/mcp`;
 complete OAuth when the client asks.
 
-### ChatGPT — personal Streamable HTTP
+### ChatGPT
 
-ChatGPT cannot launch `solix mcp` as a subprocess. For a **personal**
-connector (not the public listing), bind local HTTP and optionally expose a
-tunnel. Skypiea / UFO / opentoad are untouched.
-
-```text
-solix mcp --http --expose
-```
-
-`--http` binds `127.0.0.1:8743`. `--expose` runs a named or quick Cloudflare
-tunnel to this machine. Token: `SOLIX_MCP_TOKEN`, or
-`~/Library/Application Support/Solix/mcp-token`. ChatGPT cannot send
-`Authorization` headers — the process prints a connector URL with `?token=`.
-In ChatGPT pick **No authentication**.
+Add a custom MCP connector at `https://mcp.solix.fyi/mcp`. ChatGPT registers
+as an OAuth client; you sign in with the same Solix account. The Mac must
+already be paired with `solix mcp --cloud`.
 
 `solix mcp --check` exercises initialize + tools/list without the host.
 

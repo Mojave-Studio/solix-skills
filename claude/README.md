@@ -35,8 +35,8 @@ to authorize Solix.
 Skills are Markdown instructions. MCP traffic goes to Cloudflare
 (`mcp.solix.fyi`), then to the Solix host you connected with
 `solix mcp --cloud`. Secret values never appear in chat, MCP tool output,
-or `solix read`; names are permits only. Personal `solix mcp --http --expose`
-tunnels are not part of this listing.
+or `solix read`; names are permits only. Do not publish this Mac on the
+public internet.
 
 ## License
 
