@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "solix",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "The Solix skill set for managing persistent terminals, coding agents, projects, and shared memory through the Solix CLI.",
   "author": {
     "name": "Mojave Studio",
@@ -35,7 +35,7 @@
         "composerIconDark": "assets/solix-icon-dark.png"
       },
       "publication": {
-        "release_notes": "Adds an OpenAI Plugin manifest and square listing icon for the existing Solix skills."
+        "release_notes": "Adds a Claude plugin bundle with a local Solix MCP server and directory-safe skills."
       }
     }
   }

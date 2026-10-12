@@ -1,0 +1,19 @@
+{
+  "name": "solix",
+  "displayName": "Solix",
+  "version": "1.2.0",
+  "description": "Drive a Solix host from Claude: a local MCP server for the crew and terminals, plus skills for First Mate, projects, git, Helm, and handoff.",
+  "author": {
+    "name": "Mojave Studio",
+    "url": "https://mojave.studio"
+  },
+  "homepage": "https://solix.fyi",
+  "repository": "https://github.com/Mojave-Studio/solix-skills",
+  "license": "MIT",
+  "keywords": ["solix", "agents", "terminals", "orchestration", "mcp"],
+  "icon": "./assets/solix-icon-light.png",
+  "documentationUrl": "https://solix.fyi",
+  "supportUrl": "https://solix.fyi/contact/",
+  "privacyPolicyUrl": "https://solix.fyi/privacy/",
+  "termsOfServiceUrl": "https://solix.fyi/terms/"
+}
