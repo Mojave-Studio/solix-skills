@@ -1,0 +1,42 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "solix",
+  "version": "1.1.0",
+  "description": "The Solix skill set for managing persistent terminals, coding agents, projects, and shared memory through the Solix CLI.",
+  "author": {
+    "name": "Mojave Studio",
+    "url": "https://mojave.studio"
+  },
+  "homepage": "https://solix.fyi",
+  "repository": "https://github.com/Mojave-Studio/solix-skills",
+  "license": "MIT",
+  "keywords": ["solix", "agents", "terminals", "orchestration", "remote"],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Solix",
+        "shortDescription": "Operate a Solix host",
+        "longDescription": "Use the Solix CLI to manage persistent terminals, coding agents, projects, shared memory, and Helm registers on a Solix host.",
+        "developerName": "Mojave Studio",
+        "category": "Productivity",
+        "capabilities": ["Skills"],
+        "websiteURL": "https://solix.fyi/",
+        "supportURL": "https://solix.fyi/contact/",
+        "privacyPolicyURL": "https://solix.fyi/privacy/",
+        "termsOfServiceURL": "https://solix.fyi/terms/",
+        "defaultPrompt": [
+          "List my Solix terminals and their states.",
+          "Attach this chat to my Solix project.",
+          "Write a handoff note into Solix memory."
+        ],
+        "logo": "assets/solix-icon-light.png",
+        "logoDark": "assets/solix-icon-dark.png",
+        "composerIcon": "assets/solix-icon-light.png",
+        "composerIconDark": "assets/solix-icon-dark.png"
+      },
+      "publication": {
+        "release_notes": "Adds an OpenAI Plugin manifest and square listing icon for the existing Solix skills."
+      }
+    }
+  }
+}

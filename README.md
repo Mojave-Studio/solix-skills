@@ -20,7 +20,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/github/stars/Mojave-Studio/solix-skills?style=flat-square&color=111111&label=stars" alt="Stars">
-  <img src="https://img.shields.io/badge/skills-14-111111?style=flat-square" alt="14 skills">
+  <img src="https://img.shields.io/badge/skills-13-111111?style=flat-square" alt="13 skills">
   <img src="https://img.shields.io/badge/works%20with-any%20SKILL.md%20agent-111111?style=flat-square" alt="Works with any SKILL.md agent">
   <img src="https://img.shields.io/badge/license-MIT-111111?style=flat-square" alt="MIT license">
 </p>
