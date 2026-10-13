@@ -62,9 +62,16 @@ HELM (the user's saved rig)
   solix agents audit | unify [--apply]        align AGENTS.md / CLAUDE.md …
 
 SECRETS
-  solix secret list | set <name> | rm <name>  values enter via stdin only
+  solix secret list                           names only — values are never shown
+  solix add secret: <name>                    add/rotate; value via stdin only
+  solix secret apply "<name>" [--env VAR] -- <cmd>…
+                                              host runs <cmd> with the value on
+                                              stdin (or as $VAR); output redacted
   solix secret grant|revoke <term> <name>     permit a terminal's marker
   solix pass <term> <name>                    operator injects at a prompt
+
+  "Use the secret X" means `solix secret apply`, never ask for or print it:
+    solix secret apply "Pela Open AI key" -- npx wrangler pages secret put OPENAI_API_KEY --project-name <p>
 
 GIT & MACHINE
   solix git status|diff|commit [--ai] [--push]|branch|pr [new --ai]|exec -- …
