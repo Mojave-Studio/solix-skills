@@ -57,6 +57,8 @@ HELM (the user's saved rig)
   solix value list | set <n> <v>              the {{var}} table
   solix rule list | new <n> <trigger> <action> | rm           automations
   solix skill list | show <name> | add <owner/repo|path> | rm <name>
+  solix load helm|secrets|skills|docs|values|commands|rules
+                                              insert into THIS chat (Mac popup)
   solix agents audit | unify [--apply]        align AGENTS.md / CLAUDE.md …
 
 SECRETS
@@ -72,7 +74,7 @@ GIT & MACHINE
 
 Specialised skills cover the deeper workflows — load them when the task
 calls for it: `solix:first-mate`, `solix:git`, `solix:helm`,
-`solix:usage`, `solix:revive`, `solix:agents`,
+`solix:load`, `solix:usage`, `solix:revive`, `solix:agents`,
 `solix:mcp`, `solix:skills`.
 
 ## Secrets without exposure
@@ -122,11 +124,19 @@ Slash commands in the `solix:` namespace act on THIS chat:
 /solix:assign       put this thread under First Mate supervision
 /solix:handoff      leave a durable note for the next agent
 /solix:revive       hand off to a fresh successor before context runs out
+/solix:load-helm    insert every Helm register into this chat
+/solix:load-secrets operator picks all secrets or one (Mac popup)
+/solix:load-skills  operator picks all skills or one
+/solix:load-docs    operator picks all docs or one
+/solix:load-values  operator picks all values or one
+/solix:load-commands operator picks all commands or one
+/solix:load-rules   operator picks all rules or one
 ```
 
 Agent CLIs that don't register `:` names invoke this skill with the
 subcommand as its argument (`/solix first-mate`, `/solix join <project>`).
-Route it: run `solix skill show solix:<arg>` and follow that. A bare
+Route it: run `solix skill show solix:<arg>` and follow that. A `load` or
+`load-*` argument routes to `solix skill show solix:load`. A bare
 `/solix <name>` that isn't a known subcommand means `solix:join <name>`.
 
 ## Working pattern
