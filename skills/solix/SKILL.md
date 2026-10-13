@@ -73,6 +73,12 @@ SECRETS
   "Use the secret X" means `solix secret apply`, never ask for or print it:
     solix secret apply "Pela Open AI key" -- npx wrangler pages secret put OPENAI_API_KEY --project-name <p>
 
+SLACK
+  solix slack setup                           Slack CLI project for bot "Solix";
+                                              then `slack install` + `slack run`
+  solix text --slack <channel> [--thread <ts>] "<reply>"
+                                              answer a Slack message in its thread
+
 GIT & MACHINE
   solix git status|diff|commit [--ai] [--push]|branch|pr [new --ai]|exec -- …
   solix machine lock | awake 30m|1h|off | volume up|down | brightness <0-100>
@@ -145,6 +151,15 @@ subcommand as its argument (`/solix first-mate`, `/solix join <project>`).
 Route it: run `solix skill show solix:<arg>` and follow that. A `load` or
 `load-*` argument routes to `solix skill show solix:load`. A bare
 `/solix <name>` that isn't a known subcommand means `solix:join <name>`.
+
+## Bare `/solix` — register this terminal
+
+`/solix` with NO subcommand and NO argument at all means "register this
+terminal." Run `solix register` (pass `--title <name>` guessing something
+identifying — the agent/provider name if known). Then tell the operator
+it's now visible in Solix as an external terminal: listed and killable from
+the app, but Solix can't attach to it or send it input, since it didn't
+spawn this terminal and doesn't own its PTY.
 
 ## Working pattern
 
