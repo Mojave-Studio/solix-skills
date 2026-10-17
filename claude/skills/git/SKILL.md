@@ -1,7 +1,7 @@
 ---
 name: git
 description: Drive the user's git repos through the solix CLI — status, diff, AI-drafted commits, branches, pull requests, push — including plain-speech requests like "commit this repo and write a message then push".
-argument-hint: "[what to do, in plain speech — e.g. 'commit Solix MAC with an AI message and push', 'open a PR for this branch']"
+argument-hint: "[what to do, in plain speech — e.g. 'commit Solix Desktop with an AI message and push', 'open a PR for this branch']"
 ---
 
 # Solix Git
