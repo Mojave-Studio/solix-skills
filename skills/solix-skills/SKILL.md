@@ -1,5 +1,5 @@
 ---
-name: solix:skills
+name: solix-skills
 description: "Tidy agent skills across every skills directory on this machine — find duplicates, broken links, shadowed copies, and stale versions, and remove or relink them. Use when asked to clean up, dedupe, audit, or fix installed skills, or when a skill loads the wrong version."
 argument-hint: "[check | clean]"
 ---

@@ -1,6 +1,6 @@
 #!/bin/sh
-# Mirror skills/ into claude/skills/ with directory-safe names.
-# skills/solix:first-mate → claude/skills/first-mate (plugin command /solix:first-mate)
+# Mirror skills/ into claude/skills/ with plugin-namespace-safe names.
+# skills/solix-first-mate → claude/skills/first-mate (plugin command /solix:first-mate)
 set -eu
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
@@ -13,7 +13,7 @@ mkdir -p "$DST"
 for dir in "$SRC"/*/; do
     base="$(basename "$dir")"
     case "$base" in
-        solix:*) dest="${base#solix:}" ;;
+        solix-*) dest="${base#solix-}" ;;
         *) dest="$base" ;;
     esac
     mkdir -p "$DST/$dest"

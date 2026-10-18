@@ -1,5 +1,5 @@
 ---
-name: solix:helm
+name: solix-helm
 description: Manage the user's Helm registers — commands, skills, secrets, values, docs, and rules — through one verb-object grammar. Create, read, edit, use, rename, or delete any register entry from the solix CLI.
 argument-hint: "[verb-object + args — e.g. read-command, new-command deploy, use-command deploy]"
 ---
@@ -89,4 +89,4 @@ enter through `solix:pass:` markers at a concealed prompt.
   can't list, read, edit, or delete it; never relay its contents into a
   worker's brief.
 - To insert register items into this chat, `solix load <register>` (skill
-  `solix:load`). The operator picks all-vs-one in a Mac popup you never see.
+  `solix-load`). The operator picks all-vs-one in a Mac popup you never see.

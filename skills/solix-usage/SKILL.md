@@ -1,5 +1,5 @@
 ---
-name: solix:usage
+name: solix-usage
 description: "Read usage across every linked provider — rate-limit windows, % left, reset times, walls, promo/credit pools, and measured run results. Use when asked about usage, quotas, rate limits, when a window resets, or where work can run."
 ---
 

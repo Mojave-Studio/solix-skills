@@ -19,6 +19,8 @@ solix git branch                               — list, * = current
 solix git branch new <name> [--stay] [--from ref]
 solix git checkout <name>
 solix git branch rm <name>                     — safe -d, refuses unmerged
+solix git worktrees                            — every checkout, * = main
+solix git worktrees prune                      — drop merged worktrees
 solix git pr                                   — open PRs
 solix git pr new [--ai] [--title t] [--body b] [--base b] [--draft]
 solix git draft [--kind commit|pr|branch] [--provider p] [--model m] [--base b]

@@ -56,23 +56,28 @@ Handshake methods: `initialize`, `notifications/initialized`, `tools/list`,
 
 The public listing is Streamable HTTP at `https://mcp.solix.fyi/mcp` with
 OAuth (Solix account). It is multi-tenant: Claude never talks to a personal
-tunnel. The Mac (or other Solix host) opens an outbound WebSocket:
+tunnel. The host owns an outbound WebSocket bridge — enable it once:
 
 ```text
-solix mcp --cloud
+solix mcp cloud on        # enable (the app keeps it connected)
+solix mcp cloud signin    # one-time Solix account sign-in, if needed
+solix mcp cloud status    # connected / connecting / off
+solix mcp cloud off
 ```
 
-First run signs in with the Solix Firebase account (email + password, same
-as the iPhone app). Later runs refresh that session from
-`~/Library/Application Support/Solix/mcp-cloud-auth.json`. Keep the process
-running. Plugin `.mcp.json` already points at `https://mcp.solix.fyi/mcp`;
-complete OAuth when the client asks.
+The menu bar's "MCP" row and Settings → Messages → MCP Cloud do the same
+thing without a terminal. Sign-in uses the Solix account (email + password,
+same as the iPhone app); the session persists in
+`~/Library/Application Support/Solix/mcp-cloud-auth.json`.
+`solix mcp --cloud` runs the same bridge in the foreground for debugging —
+it dies with the terminal. Plugin `.mcp.json` already points at
+`https://mcp.solix.fyi/mcp`; complete OAuth when the client asks.
 
 ### ChatGPT
 
 Add a custom MCP connector at `https://mcp.solix.fyi/mcp`. ChatGPT registers
 as an OAuth client; you sign in with the same Solix account. The Mac must
-already be paired with `solix mcp --cloud`.
+already be connected (`solix mcp cloud on`, or the menu-bar MCP row).
 
 `solix mcp --check` exercises initialize + tools/list without the host.
 

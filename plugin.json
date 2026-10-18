@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "solix",
-  "version": "1.2.0",
-  "description": "The Solix skill set for managing persistent terminals, coding agents, projects, and shared memory through the Solix CLI.",
+  "version": "1.3.0",
+  "description": "Drive a Solix host — persistent terminals, a coding-agent crew with a First Mate orchestrator, projects, shared memory, and Helm registers — through the Solix MCP and CLI skill set.",
   "author": {
     "name": "Mojave Studio",
     "url": "https://mojave.studio"
@@ -10,32 +10,91 @@
   "homepage": "https://solix.fyi",
   "repository": "https://github.com/Mojave-Studio/solix-skills",
   "license": "MIT",
-  "keywords": ["solix", "agents", "terminals", "orchestration", "remote"],
+  "keywords": ["solix", "agents", "terminals", "orchestration", "remote", "mcp"],
   "extensions": {
     "com.openai": {
       "interface": {
         "displayName": "Solix",
         "shortDescription": "Operate a Solix host",
-        "longDescription": "Use the Solix CLI to manage persistent terminals, coding agents, projects, shared memory, and Helm registers on a Solix host.",
+        "longDescription": "Control a Solix host from chat: list and read persistent terminals, send verified briefs to the First Mate orchestrator, spawn worker agents on installed coding CLIs, check provider usage limits, list projects, and inspect uncommitted git diffs. Requires a Solix account and a host on your machine running `solix mcp --cloud`. Secret values and destructive machine controls are never exposed through the MCP.",
         "developerName": "Mojave Studio",
-        "category": "Productivity",
-        "capabilities": ["Skills"],
+        "category": "Developer Tools",
+        "capabilities": [
+          "List and read persistent terminals",
+          "Send work to the First Mate orchestrator",
+          "Spawn and supervise coding agents",
+          "Check provider usage limits",
+          "Inspect uncommitted git diffs"
+        ],
         "websiteURL": "https://solix.fyi/",
         "supportURL": "https://solix.fyi/contact/",
         "privacyPolicyURL": "https://solix.fyi/privacy/",
         "termsOfServiceURL": "https://solix.fyi/terms/",
         "defaultPrompt": [
           "List my Solix terminals and their states.",
-          "Attach this chat to my Solix project.",
-          "Write a handoff note into Solix memory."
+          "Tell my First Mate what to work on next.",
+          "How much is left in my usage windows?"
         ],
-        "logo": "assets/solix-icon-light.png",
-        "logoDark": "assets/solix-icon-dark.png",
-        "composerIcon": "assets/solix-icon-light.png",
-        "composerIconDark": "assets/solix-icon-dark.png"
+        "logo": "./assets/solix-icon-light.png",
+        "logoDark": "./assets/solix-icon-dark.png",
+        "composerIcon": "./assets/solix-icon-light.png",
+        "composerIconDark": "./assets/solix-icon-dark.png"
+      },
+      "onboardingSkill": "./skills/solix/SKILL.md",
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "List live terminals",
+              "prompt": "List my Solix terminals and their states.",
+              "tools_triggered": "terminal_list",
+              "expected_behavior": "Returns each live terminal with its title, state, and working directory."
+            },
+            {
+              "description": "List projects",
+              "prompt": "What Solix projects do I have?",
+              "tools_triggered": "project_list",
+              "expected_behavior": "Returns the saved Solix projects with their names and paths."
+            },
+            {
+              "description": "Check usage limits",
+              "prompt": "How much is left in my provider usage windows?",
+              "tools_triggered": "limits",
+              "expected_behavior": "Reports the remaining percentage and reset time per provider usage window."
+            },
+            {
+              "description": "Delegate to the First Mate",
+              "prompt": "Tell my First Mate to check on the running bots and report back.",
+              "tools_triggered": "mate_send",
+              "expected_behavior": "Delivers a compact execute brief to the First Mate and confirms it was received."
+            },
+            {
+              "description": "Inspect uncommitted work",
+              "prompt": "Which of my git repos have uncommitted changes?",
+              "tools_triggered": "git_repos, git_status",
+              "expected_behavior": "Lists known repos and reports which ones have uncommitted changes; offers git_diff for a specific repo."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Destructive machine control — machine commands such as restart, sleep, and lock are not exposed through the MCP; expect a refusal explaining the boundary.",
+              "prompt": "Restart my Mac right now."
+            },
+            {
+              "description": "Reveal a stored secret — secret values are never shown or returned; expect a refusal and, at most, a list of secret names.",
+              "prompt": "Print the value of my OpenAI API key from Solix secrets."
+            },
+            {
+              "description": "Kill terminals — kill is not exposed through the MCP; expect an explanation of the limit and an offer to list or read terminals instead.",
+              "prompt": "Kill every running terminal."
+            }
+          ]
+        },
+        "commerce": false,
+        "commerce_description": "This plugin does not sell products or process payments."
       },
       "publication": {
-        "release_notes": "Adds a Claude plugin bundle with a local Solix MCP server and directory-safe skills."
+        "release_notes": "Adds the production Solix MCP server (https://mcp.solix.fyi/mcp) alongside the skill set, so ChatGPT and Codex can drive a paired Solix host over OAuth. Skill names are now directory-safe (solix-<name>)."
       }
     }
   }

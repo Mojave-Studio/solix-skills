@@ -1,7 +1,7 @@
 {
   "name": "solix",
-  "version": "1.2.0",
-  "description": "The Solix skill set: persistent terminals, a bot crew, the First Mate orchestrator, projects, and shared memory — for any coding agent.",
+  "version": "1.3.0",
+  "description": "Drive a Solix host — persistent terminals, a coding-agent crew with a First Mate orchestrator, projects, shared memory, and Helm registers — through the Solix MCP and CLI skill set.",
   "author": {
     "name": "Mojave Studio",
     "url": "https://mojave.studio"
@@ -9,23 +9,35 @@
   "homepage": "https://solix.fyi",
   "repository": "https://github.com/Mojave-Studio/solix-skills",
   "license": "MIT",
-  "keywords": ["solix", "agents", "terminals", "orchestration", "remote"],
+  "keywords": ["solix", "agents", "terminals", "orchestration", "remote", "mcp"],
   "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
   "interface": {
     "displayName": "Solix",
-    "shortDescription": "Drive a Solix host",
-    "longDescription": "Persistent terminals, a bot crew, the First Mate orchestrator, and shared memory — reachable through the solix CLI.",
+    "shortDescription": "Operate a Solix host",
+    "longDescription": "Control a Solix host from chat: list and read persistent terminals, send verified briefs to the First Mate orchestrator, spawn worker agents on installed coding CLIs, check provider usage limits, list projects, and inspect uncommitted git diffs. Requires a Solix account and a host on your machine running `solix mcp --cloud`. Secret values and destructive machine controls are never exposed through the MCP.",
     "developerName": "Mojave Studio",
-    "category": "Productivity",
-    "capabilities": ["Skills"],
-    "websiteURL": "https://solix.fyi",
+    "category": "Developer Tools",
+    "capabilities": [
+      "List and read persistent terminals",
+      "Send work to the First Mate orchestrator",
+      "Spawn and supervise coding agents",
+      "Check provider usage limits",
+      "Inspect uncommitted git diffs"
+    ],
+    "websiteURL": "https://solix.fyi/",
+    "supportURL": "https://solix.fyi/contact/",
+    "privacyPolicyURL": "https://solix.fyi/privacy/",
+    "termsOfServiceURL": "https://solix.fyi/terms/",
     "defaultPrompt": [
       "List my Solix terminals and their states.",
-      "Attach this chat to my Solix project.",
-      "Write a handoff note into Solix memory."
+      "Tell my First Mate what to work on next.",
+      "How much is left in my usage windows?"
     ],
     "brandColor": "#111111",
-    "composerIcon": "./assets/wordmark-light.png",
-    "logo": "./assets/wordmark-light.png"
+    "logo": "./assets/solix-icon-light.png",
+    "logoDark": "./assets/solix-icon-dark.png",
+    "composerIcon": "./assets/solix-icon-light.png",
+    "composerIconDark": "./assets/solix-icon-dark.png"
   }
 }

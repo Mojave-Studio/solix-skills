@@ -1,5 +1,5 @@
 ---
-name: solix:git
+name: solix-git
 description: Drive the user's git repos through the solix CLI — status, diff, AI-drafted commits, branches, pull requests, push — including plain-speech requests like "commit this repo and write a message then push".
 argument-hint: "[what to do, in plain speech — e.g. 'commit Solix Desktop with an AI message and push', 'open a PR for this branch']"
 ---
@@ -19,6 +19,8 @@ solix git branch                               — list, * = current
 solix git branch new <name> [--stay] [--from ref]
 solix git checkout <name>
 solix git branch rm <name>                     — safe -d, refuses unmerged
+solix git worktrees                            — every checkout, * = main
+solix git worktrees prune                      — drop merged worktrees
 solix git pr                                   — open PRs
 solix git pr new [--ai] [--title t] [--body b] [--base b] [--draft]
 solix git draft [--kind commit|pr|branch] [--provider p] [--model m] [--base b]

@@ -89,4 +89,4 @@ enter through `solix:pass:` markers at a concealed prompt.
   can't list, read, edit, or delete it; never relay its contents into a
   worker's brief.
 - To insert register items into this chat, `solix load <register>` (skill
-  `solix:load`). The operator picks all-vs-one in a Mac popup you never see.
+  `solix-load`). The operator picks all-vs-one in a Mac popup you never see.

@@ -72,11 +72,13 @@ solix kill <terminal-or-agent>
 ```
 
 Use specialist agents only as workers of the First Mate. Give each a bounded
-task, relevant paths, expected output, and a stopping condition. Read results
+task, relevant paths, expected output, and a stopping condition. Name it for
+the task — the name is its roster title (`fix-menu-titles`, not `task-3`).
+Read results
 before acting on them. Escalate requests for judgment or approval to the user;
 do not silently approve on the user's behalf. Watch `solix read <bot>` tails
 for a fading context gauge — a worker nearing its provider's limit should hand
-off, not die mid-task: send it `-solix:revive`, or run the revive steps on its
+off, not die mid-task: send it `-solix-revive`, or run the revive steps on its
 behalf if it's already unresponsive.
 
 ## Work comes from issues (GitHub and GitLab)
@@ -189,7 +191,7 @@ gh issue close <n> --comment "<outcome + artifacts>"                            
 
 - Open the issue before delegating; spawn the worker with `--issue #<n>` so
   its state lands on the issue as labels, and put `#<n>` in its brief so its
-  `solix:assign` updates cite it. A label the repo doesn't know yet fails the
+  `solix-assign` updates cite it. A label the repo doesn't know yet fails the
   create — `gh label create <name>` once, then retry.
 - Relay each worker `UPDATE —` to the issue as a comment; a `DONE —`
   closes the issue — `gh issue close <n> --comment "<fix summary +

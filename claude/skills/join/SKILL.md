@@ -28,6 +28,6 @@ purpose, a provider, and a secrets permit list — its helm items.
    up. Stay inside the project's scope unless the user widens it.
 
 To mint a dedicated `/solix:<project>` command: copy this skill's
-directory to `solix:<project>` under the Solix skill store, then put the
+directory to `solix-<project>` under the Solix skill store, then put the
 real name in `name:`/`description:` and bake it into the steps so no
 argument is needed.

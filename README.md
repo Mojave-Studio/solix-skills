@@ -95,7 +95,7 @@ each installed agent's skills directory — no editor config needed.
 That install is the `claude/` plugin bundle: the production Cloudflare MCP
 at `https://mcp.solix.fyi/mcp` plus the skills, invoked as
 `/solix:first-mate`, `/solix:join`, and so on. The host `solix skill add`
-path above still imports the colon-named copies in `skills/` for every
+path above still imports the hyphen-named copies in `skills/` for every
 agent CLI.
 
 ### Codex
@@ -135,15 +135,15 @@ It scans `~/.config/devin/skills`, `~/.claude/skills`, `~/.codex/skills`,
 >
 > 1. Identify your skills directory from the list above (or your platform's
 >    documented equivalent). On Linux/macOS `~` is the user's home.
-> 2. For each name `solix`, `solix:first-mate`, `solix:join`, `solix:handoff`, `solix:assign`, `solix:command-build`, `solix:revive`, `solix:git`, `solix:helm`, `solix:load`, `solix:usage`, `solix:agents`, `solix:mcp`, `solix:skills`:
+> 2. For each name `solix`, `solix-first-mate`, `solix-join`, `solix-handoff`, `solix-assign`, `solix-command-build`, `solix-revive`, `solix-git`, `solix-helm`, `solix-load`, `solix-usage`, `solix-agents`, `solix-mcp`, `solix-skills`:
 >    ```sh
 >    mkdir -p "<skills-dir>/<name>"
 >    curl -fsSL "https://raw.githubusercontent.com/Mojave-Studio/solix-skills/main/skills/<name>/SKILL.md" \
 >         -o "<skills-dir>/<name>/SKILL.md"
 >    ```
-> 3. If your platform can't resolve skill names containing `:` — skip those
->    files; the base `solix` skill documents the `/solix <subcommand>`
->    fallback form that works everywhere.
+> 3. If your platform exposes skills as `/solix <subcommand>` fallback
+>    commands instead — the base `solix` skill documents that form, which
+>    works everywhere.
 > 4. Tell the user the skills are installed and which directory you used.
 
 ## The skills
@@ -151,19 +151,19 @@ It scans `~/.config/devin/skills`, `~/.claude/skills`, `~/.codex/skills`,
 | skill | what it does |
 |---|---|
 | `solix` | the `solix` CLI surface — commands, vocabulary, the `-<skill>` invoke marker. Base fallback for providers without `:` skill names: `/solix first-mate`, `/solix join <project>`, `/solix handoff` |
-| `solix:first-mate` | commandeers the current agent as the First Mate orchestrator — crew management, routing charter (locality → headroom → capacity → cost → measured runs) |
-| `solix:join` | attach the current chat to a Solix project — adopts its path, working files, secret permits, and provider |
-| `solix:handoff` | write a durable handoff note into Solix memory for the next agent |
-| `solix:assign` | put this thread under First Mate supervision — announce the task, stream milestone updates into its terminal, close out with DONE or HANDOFF |
-| `solix:command-build` | save a shell command to the Commands register so Solix can open and run it as a plain terminal later — no agent chat needed |
-| `solix:revive` | hand this chat's work to a fresh successor bot before running out of context — handoff, spawn, brief, exit cleanly |
-| `solix:git` | drive the user's git repos through `solix git` — status, diff, AI-drafted commits, branches, pull requests, push; plain-speech requests map to ops |
-| `solix:helm` | manage the user's Helm registers — commands, skills, secrets, values, rules — through one verb-object grammar (`solix command new`, `solix secret set`, …) |
-| `solix:load` | insert Helm register items into this chat — `solix load helm` dumps every register; `solix load secrets` (and the other registers) opens a Mac popup, all vs one |
-| `solix:usage` | read usage across every linked provider — windows, % left, resets, walls, promo pools, and measured run results |
-| `solix:agents` | audit and unify agent instruction files (`AGENTS.md`, `CLAUDE.md`, …) onto one canonical file per scope |
-| `solix:mcp` | tidy MCP servers across every agent CLI — remove failed and redundant ones, reauthorize expired OAuth |
-| `solix:skills` | tidy installed skills across every skills directory — duplicates, drifted copies, broken links |
+| `solix-first-mate` | commandeers the current agent as the First Mate orchestrator — crew management, routing charter (locality → headroom → capacity → cost → measured runs) |
+| `solix-join` | attach the current chat to a Solix project — adopts its path, working files, secret permits, and provider |
+| `solix-handoff` | write a durable handoff note into Solix memory for the next agent |
+| `solix-assign` | put this thread under First Mate supervision — announce the task, stream milestone updates into its terminal, close out with DONE or HANDOFF |
+| `solix-command-build` | save a shell command to the Commands register so Solix can open and run it as a plain terminal later — no agent chat needed |
+| `solix-revive` | hand this chat's work to a fresh successor bot before running out of context — handoff, spawn, brief, exit cleanly |
+| `solix-git` | drive the user's git repos through `solix git` — status, diff, AI-drafted commits, branches, pull requests, push; plain-speech requests map to ops |
+| `solix-helm` | manage the user's Helm registers — commands, skills, secrets, values, rules — through one verb-object grammar (`solix command new`, `solix secret set`, …) |
+| `solix-load` | insert Helm register items into this chat — `solix load helm` dumps every register; `solix load secrets` (and the other registers) opens a Mac popup, all vs one |
+| `solix-usage` | read usage across every linked provider — windows, % left, resets, walls, promo pools, and measured run results |
+| `solix-agents` | audit and unify agent instruction files (`AGENTS.md`, `CLAUDE.md`, …) onto one canonical file per scope |
+| `solix-mcp` | tidy MCP servers across every agent CLI — remove failed and redundant ones, reauthorize expired OAuth |
+| `solix-skills` | tidy installed skills across every skills directory — duplicates, drifted copies, broken links |
 
 ## Uninstall
 

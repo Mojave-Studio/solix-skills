@@ -86,9 +86,9 @@ GIT & MACHINE
 ```
 
 Specialised skills cover the deeper workflows — load them when the task
-calls for it: `solix:first-mate`, `solix:git`, `solix:helm`,
-`solix:load`, `solix:usage`, `solix:revive`, `solix:agents`,
-`solix:mcp`, `solix:skills`.
+calls for it: `solix-first-mate`, `solix-git`, `solix-helm`,
+`solix-load`, `solix-usage`, `solix-revive`, `solix-agents`,
+`solix-mcp`, `solix-skills`.
 
 ## Secrets without exposure
 
@@ -148,9 +148,9 @@ Slash commands in the `solix:` namespace act on THIS chat:
 
 Agent CLIs that don't register `:` names invoke this skill with the
 subcommand as its argument (`/solix first-mate`, `/solix join <project>`).
-Route it: run `solix skill show solix:<arg>` and follow that. A `load` or
-`load-*` argument routes to `solix skill show solix:load`. A bare
-`/solix <name>` that isn't a known subcommand means `solix:join <name>`.
+Route it: run `solix skill show solix-<arg>` and follow that. A `load` or
+`load-*` argument routes to `solix skill show solix-load`. A bare
+`/solix <name>` that isn't a known subcommand means `solix-join <name>`.
 
 ## Bare `/solix` — register this terminal
 

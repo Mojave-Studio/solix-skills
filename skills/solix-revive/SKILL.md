@@ -1,5 +1,5 @@
 ---
-name: solix:revive
+name: solix-revive
 description: Hand this chat's work to a fresh successor bot before running out of context — write the handoff, spawn a replacement on the same project, brief it, and exit cleanly instead of dying mid-task.
 argument-hint: "[extra context for the successor]"
 ---
@@ -60,7 +60,7 @@ solix bot new <yourname>-next --provider <id> --project <same> --parent <you>
 solix send <successor> "You succeed <you>. First: run \`solix memory list\`
 and read handoff <uuid>. cwd: <dir> — project <name>. Done: <one line>.
 Next: <one line>. If a First Mate supervises this crew, re-register per
-solix:assign."
+solix-assign."
 ```
 
 The brief is a pointer; the handoff node carries the detail. Confirm the
@@ -82,7 +82,7 @@ stopped file beats a half-written one.
 `solix read <bot>` tails the provider's own context gauge in scrollback.
 When a worker runs low:
 
-1. Prefer `solix send <bot> -solix:revive` — the marker expands this
+1. Prefer `solix send <bot> -solix-revive` — the marker expands this
    skill into the bot's input and it runs the sequence itself.
 2. If the bot is already unresponsive, run the steps on its behalf:
    write the handoff from its scrollback (`solix memory add handoff
