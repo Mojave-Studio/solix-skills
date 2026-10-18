@@ -107,14 +107,25 @@ For each issue:
 1. **Triage** — `solix decide` picks the project and provider (choice
    questions over the issue title + body), plus `solix limits` headroom.
 2. **Delegate** to the right place:
+   - a **subagent in your own session** (your CLI's Task/Agent tool) —
+     the default whenever the work runs on your provider+model anyway:
+     subagents share your terminal and process, so a batch of
+     same-provider issues costs no extra terminals or RAM. They don't
+     auto-label — `gh issue edit <n> --add-label solix:working` yourself
+     so no other host re-picks the issue — and they die with your
+     session, so never subagent work that must outlive you. Subagents
+     spend your provider's window: when it's nearly walled, a routed
+     `solix bot` on another pool wins even for small work.
    - a **cloud agent**, by commenting on the issue — `gh issue comment <n>
      --body "@codex …"` / `"@claude …"` (or assign Copilot); on GitLab
      `glab issue note <n> -m "…"`. Use this when the provider's app works
      from issues rather than a terminal.
    - a **local agent** in a Solix terminal, linked to the issue:
      `solix bot new <name> --provider <id> --project <name> --issue <repo>#<n>`
-     (or `solix bot issue <bot> <repo>#<n>` for one already running). Its
-     state is labeled onto the issue automatically: `solix:working`,
+     (or `solix bot issue <bot> <repo>#<n>` for one already running) —
+     the durable path: a different provider/model, its own permits/env,
+     Crew visibility, or survival past your session. Its state is labeled
+     onto the issue automatically: `solix:working`,
      `solix:needs-input`, `solix:done`.
 3. **Report back, then close** — comment progress and blockers on the
    issue; when the work lands, the closing comment is the receipt — name
