@@ -160,6 +160,19 @@ blocker for whoever reads it next. Errors after prompting an agent (a dead
 provider, a wedged session) are yours to fix: revive, re-prompt, or
 re-route the model, and only alert the operator when the call is theirs.
 
+Pre-wall pauses come to you — the host freezes a worker's terminal
+(SIGSTOP, every group on its tty) when its provider's base window hits
+~97% used, then pages you: `[solix] Monitor — … paused at N% used …`.
+Take the call to the operator. "Continue" = `solix send` it anything —
+input thaws a limit-paused terminal; the rest of the window burns down
+to the wall and the re-route below applies. "Move" = send it a
+state-snapshot request first (the thaw spends its last few percent
+writing what's done / files touched / what's next), `solix read` the
+snapshot back, then `solix route` + `solix bot kill` + `solix bot new`
+the successor on the routed provider with the snapshot as its brief.
+Operator silent? The host thaws it itself if the window reopens; a real
+wall still lands as `.limited`.
+
 A walled worker is a re-route, not a wait. `solix read` its tail for how
 far it got, `solix route` for an open provider+model (it already skips
 walls and your own provider), then `solix bot kill` the walled worker —
@@ -236,13 +249,31 @@ solix providers      installed CLIs + cheapest model, cost tier, promos
 solix limits         usage windows per provider — walls, % left, resets,
                      promo/extra/credits pools; --history adds sparklines
 solix route          the open executor with the most headroom; skips walls
-                     and your own provider (--exclude <id> skips more)
+                     and your own provider, prefers unmetered lanes, and
+                     discounts each live worker — call it once per spawn
+                     (--exclude <id> skips more)
 solix runs           measured results: duration, outcome, rating per run
 solix project show <name>   a project's harness, model, pool, startup, docs
 solix bot new <n> --provider <id> --model <m> --project <name> [--effort <e>]
 solix mate --project <name> [--provider <id>] [--model <m>] [--laya|--no-laya]
 solix run rate <id> <1-5> [notes]   score a finished run — feeds routing
+solix send <worker> <text>          queue a request onto a live worker —
+                                    it answers when free
+solix bot new <n> --parent <worker>  a subagent sharing the worker's context
 ```
+
+Batch before you spawn: a terminal isn't the unit, a task is. Related
+follow-ups ride the worker that already holds the context — `solix send`
+queues the request onto its terminal for free, or a `--parent` subagent
+shares that context instead of starting cold. `solix bot new` is for
+genuinely separate scope — a different project, a different context,
+work that can't share a queue — and it lands on `solix route`'s pick,
+never your own provider unless it's the only harness installed or the
+project pool pins it (planning and execution drain different pools).
+On a fan-out — several workers at once — call `solix route` per spawn:
+each pick carries a live-load discount, so consecutive calls spread
+across pools instead of draining the first pick's window before the
+next usage reading lands.
 
 Decision order:
 
@@ -254,7 +285,13 @@ Decision order:
    execution to `solix route`'s pick so coding drains a different pool.
    Check `solix limits` BEFORE delegating. A
    `walled` window can't take work until its reset; route around it or
-   wait. Between open providers prefer the one with more % left, and
+   wait. A provider at ~97%+ used is walled for NEW chats too — the host
+   enforces it: `solix bot new`/`solix mate` on a hot provider reroutes
+   to the open harness with the most headroom, or fails
+   `providerAtLimit` when nothing clears it. On that refusal wait for
+   the earliest reset and retry — never force the spent provider.
+   Between open providers prefer the one with more % left AFTER live
+   workers are counted — `solix route` does that arithmetic — and
    spend promo/extra/credits pools on bounded tasks first — bonus
    capacity is free headroom.
 3. **Model** — after the provider, pick the model from `solix providers`
@@ -269,7 +306,13 @@ Decision order:
    the work.
 5. **Cost** — prefer free-tier and promo models (`solix providers` marks
    them): unmetered models first, cheap tiers for bounded tasks, premium
-   only when the task justifies it. Promos expire — re-check, don't assume.
+   only when the task justifies it. A provider whose default lane is
+   `.free` (devin→swe, cursor-agent→auto) runs unmetered no matter what
+   its metered side-windows read — `solix route` already scores it that
+   way; a bare spawn there IS the free lane. On a metered provider that
+   merely catalogs a free model (claude/codex `ollama/*` lanes), the free
+   lane only counts when you pin `--model` to it. Promos expire —
+   re-check, don't assume.
 6. **Measured results** — `solix runs` shows what actually performed here.
    Prefer provider+model pairs with good ratings for this kind of task;
    after reviewing a run's output, score it with `solix run rate`.
