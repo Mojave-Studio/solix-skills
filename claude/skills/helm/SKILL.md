@@ -1,6 +1,6 @@
 ---
 name: helm
-description: Manage the user's Helm registers — commands, skills, secrets, values, docs, and rules — through one verb-object grammar. Create, read, edit, use, rename, or delete any register entry from the solix CLI.
+description: Manage the user's Helm registers — commands, skills, secrets, values, docs, and files — through one verb-object grammar. Create, read, edit, use, rename, or delete any register entry from the solix CLI.
 argument-hint: "[verb-object + args — e.g. read-command, new-command deploy, use-command deploy]"
 ---
 
@@ -14,7 +14,7 @@ skill per action.
 
 `<verb>-<object>` where verb is `new`, `read`, `edit`, `use`, `rename`,
 `delete` and object is `command`, `skill`, `secret`, `value`, `doc`,
-`rule`. The CLI spells it `<object> <action>`:
+`file`. The CLI spells it `<object> <action>`:
 
 ```text
 new-command      → solix command new <name> --cmd "<shell>" [--dir <path>]
@@ -49,13 +49,14 @@ use-value        → values are the {{var}} table — see Variables below
 rename-value     → solix value rename <old> <new>
 delete-value     → solix value rm <name>
 
-new-rule         → solix rule new <name> --battery-below <n>|--at <iso|+30m>
-                   --run "<cmd>"|--keep-awake|--sleep|--sleep-display|--release
-read-rule        → solix rule list
-edit-rule        → solix rule new <name> …             (upserts by name)
-use-rule         → rules fire on their trigger — nothing to invoke
-rename-rule      → not supported — rm and re-new
-delete-rule      → solix rule rm <id|name>
+new-file         → solix file set <name> <path>          (path must exist —
+                   registers a pointer to local key/cert material)
+read-file        → solix file list  /  solix file show <name>
+edit-file        → solix file set <name> <new-path>      (upserts by name)
+use-file         → the register holds the PATH, never the contents —
+                   `cat "$(solix file show <name>)"` to read or pipe it
+rename-file      → solix file set <new> <path> then `solix file rm <old>`
+delete-file      → solix file rm <name>
 
 new-doc          → solix docs add note|link <title> <text|url>
                    (vaults/folders: solix docs add vault|folder <path>)

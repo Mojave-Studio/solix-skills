@@ -1,7 +1,7 @@
 ---
 name: solix-load
-description: Load Helm register items into THIS chat — secrets, skills, docs, values, commands, rules, or the whole Helm. The operator picks all-vs-one in a Mac popup the agent never sees; selected items are inserted as incoming work.
-argument-hint: "[helm|secrets|skills|docs|values|commands|rules]"
+description: Load Helm register items into THIS chat — secrets, skills, docs, values, commands, files, or the whole Helm. The operator picks all-vs-one in a Mac popup the agent never sees; selected items are inserted as incoming work.
+argument-hint: "[helm|secrets|skills|docs|values|commands|files]"
 ---
 
 # Solix Load
@@ -21,7 +21,7 @@ solix load skills
 solix load docs
 solix load values
 solix load commands
-solix load rules
+solix load files
 ```
 
 Aliases: `solix load-helm`, `solix load-secrets`, and the same for each

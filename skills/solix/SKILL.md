@@ -55,9 +55,10 @@ PROJECTS & MEMORY
 HELM (the user's saved rig)
   solix command list | show | new <n> --cmd "…" | run <n> [--var k=v]…
   solix value list | set <n> <v>              the {{var}} table
-  solix rule list | new <n> <trigger> <action> | rm           automations
+  solix file list | set <name> <path> | show <name> | rm <name>
+                                              name → path pointers
   solix skill list | show <name> | add <owner/repo|path> | rm <name>
-  solix load helm|secrets|skills|docs|values|commands|rules
+  solix load helm|secrets|skills|docs|values|commands|files
                                               insert into THIS chat (Mac popup)
   solix agents audit | unify [--apply]        align AGENTS.md / CLAUDE.md …
 
@@ -143,7 +144,7 @@ Slash commands in the `solix:` namespace act on THIS chat:
 /solix:load-docs    operator picks all docs or one
 /solix:load-values  operator picks all values or one
 /solix:load-commands operator picks all commands or one
-/solix:load-rules   operator picks all rules or one
+/solix:load-files   operator picks all file pointers or one
 ```
 
 Agent CLIs that don't register `:` names invoke this skill with the
