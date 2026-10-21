@@ -6,15 +6,15 @@ argument-hint: "[verb-object + args — e.g. read-command, new-command deploy, u
 
 # Solix Helm
 
-The Helm is the user's persistent rig: six registers of named objects stored
+The Helm is the user's persistent rig: named registers of objects stored
 on the host. Everything below is a `solix` CLI call — one grammar, not a
 skill per action.
 
 ## The grammar
 
 `<verb>-<object>` where verb is `new`, `read`, `edit`, `use`, `rename`,
-`delete` and object is `command`, `skill`, `secret`, `value`, `doc`,
-`file`. The CLI spells it `<object> <action>`:
+`delete` and object is `command`, `skill`, `secret`, `value`, `setting`,
+`doc`, `vault`, `file`. The CLI spells it `<object> <action>`:
 
 ```text
 new-command      → solix command new <name> --cmd "<shell>" [--dir <path>]
@@ -55,7 +55,7 @@ read-file        → solix file list  /  solix file show <name>
 edit-file        → solix file set <name> <new-path>      (upserts by name)
 use-file         → the register holds the PATH, never the contents —
                    `cat "$(solix file show <name>)"` to read or pipe it
-rename-file      → solix file set <new> <path> then `solix file rm <old>`
+rename-file      → solix file rename <old> <new>
 delete-file      → solix file rm <name>
 
 new-doc          → solix docs add note|link <title> <text|url>
@@ -66,6 +66,23 @@ use-doc          → solix docs show <name|id>   (prints the body — the lazy
                    read path; prompts carry titles, this fetches on demand)
 rename-doc       → not supported — add under the new title, rm the old
 delete-doc       → solix docs rm <name|id>
+
+new-vault        → solix vault import <path> [--project <p>]
+read-vault       → solix vault list  /  solix vault notes|read <name>
+edit-vault       → vaults read live from disk — nothing to edit here
+use-vault        → imported Obsidian vaults stay current; notes route to
+                   the project that owns the vault
+rename-vault     → not supported — rm and re-import
+delete-vault     → solix vault rm <name>
+
+new-setting      → solix settings set <name> <value>
+read-setting     → solix settings list
+edit-setting     → solix settings set <name> <new-value>
+use-setting      → the host reads it — autonomy level, mate bindings,
+                   alert routes, issue triggers; `solix value set` on a
+                   known config name lands here too
+rename-setting   → solix settings rename <old> <new>
+delete-setting   → solix settings rm <name>
 ```
 
 ## Variables

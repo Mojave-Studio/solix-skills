@@ -1,7 +1,7 @@
 {
   "name": "solix",
   "displayName": "Solix",
-  "version": "1.3.2",
+  "version": "1.4.0",
   "description": "Drive a Solix host from Claude: a production Cloudflare MCP for the crew, terminals, and sitting git diffs, plus skills for First Mate, projects, git, Helm, and handoff.",
   "author": {
     "name": "Mojave Studio",

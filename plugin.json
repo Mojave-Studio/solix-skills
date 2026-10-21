@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "solix",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "Drive a Solix host — persistent terminals, a coding-agent crew with a First Mate orchestrator, projects, shared memory, and Helm registers — through the Solix MCP and CLI skill set.",
   "author": {
     "name": "Mojave Studio",
@@ -16,13 +16,15 @@
       "interface": {
         "displayName": "Solix",
         "shortDescription": "Operate a Solix host",
-        "longDescription": "Control a Solix host from chat: list and read persistent terminals, send verified briefs to the First Mate orchestrator, spawn worker agents on installed coding CLIs, check provider usage limits, list projects, and inspect uncommitted git diffs. Requires a Solix account and a host on your machine running `solix mcp --cloud`. Secret values and destructive machine controls are never exposed through the MCP.",
+        "longDescription": "Control a Solix host from chat: list and read persistent terminals, send verified briefs to the First Mate orchestrator, spawn worker agents on installed coding CLIs, submit work to the routed task queue, consult consumer chat advisers, check provider usage limits, list projects, and inspect uncommitted git diffs. Requires a Solix account and a host on your machine running `solix mcp cloud on`. Elevated tools — secrets, kill, value writes, machine control — run only while the operator holds the matching grant open at mcp.solix.fyi/grants, and secret values are never returned.",
         "developerName": "Mojave Studio",
         "category": "Developer Tools",
         "capabilities": [
           "List and read persistent terminals",
           "Send work to the First Mate orchestrator",
           "Spawn and supervise coding agents",
+          "Submit, approve, and track routed tasks",
+          "Consult consumer chat advisers",
           "Check provider usage limits",
           "Inspect uncommitted git diffs"
         ],
@@ -33,6 +35,7 @@
         "defaultPrompt": [
           "List my Solix terminals and their states.",
           "Tell my First Mate what to work on next.",
+          "Submit a task to fix the login redirect bug.",
           "How much is left in my usage windows?"
         ],
         "logo": "./assets/solix-icon-light.png",
@@ -77,15 +80,15 @@
           ],
           "negative": [
             {
-              "description": "Destructive machine control — machine commands such as restart, sleep, and lock are not exposed through the MCP; expect a refusal explaining the boundary.",
+              "description": "Destructive machine control — machine_control exists but is refused until the operator enables the \"machine\" grant at mcp.solix.fyi/grants; expect a refusal naming the grant, never an unguarded restart/sleep/lock.",
               "prompt": "Restart my Mac right now."
             },
             {
-              "description": "Reveal a stored secret — secret values are never shown or returned; expect a refusal and, at most, a list of secret names.",
+              "description": "Reveal a stored secret — secret values are never shown or returned even with the \"secrets\" grant on; expect a refusal and, at most, a list of secret names (secret_list itself needs the grant).",
               "prompt": "Print the value of my OpenAI API key from Solix secrets."
             },
             {
-              "description": "Kill terminals — kill is not exposed through the MCP; expect an explanation of the limit and an offer to list or read terminals instead.",
+              "description": "Kill terminals — terminal_kill/bot_kill are refused until the operator enables the \"kill\" grant at mcp.solix.fyi/grants; expect a refusal naming the grant and an offer to list or read terminals instead.",
               "prompt": "Kill every running terminal."
             }
           ]
@@ -94,7 +97,7 @@
         "commerce_description": "This plugin does not sell products or process payments."
       },
       "publication": {
-        "release_notes": "Adds the production Solix MCP server (https://mcp.solix.fyi/mcp) alongside the skill set, so ChatGPT and Codex can drive a paired Solix host over OAuth. Skill names are now directory-safe (solix-<name>)."
+        "release_notes": "Documents the durable task queue (solix task), provider routing (solix route), consumer-chat consults, fleet delegation to paired machines, and the terminal lifecycle verbs (land/takeoff/watch/adopt). The cloud MCP adds task_* and route tools plus an operator-grant-gated elevated set (secrets, kill, values, machine control) toggled at mcp.solix.fyi/grants. New solix-land skill."
       }
     }
   }

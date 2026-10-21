@@ -42,12 +42,20 @@ Example Claude Desktop snippet:
 
 Think in the chat. `mate_send` delivers a verified execute brief to First
 Mate (★) — compact goal, paths, stopping condition; First Mate must not
-re-plan. Spawn terminals with `terminal_new`, workers with `bot_new`;
-`bot_list` / `bot_read` / `bot_send` / `wait` for the crew. Sitting local
-git diffs: `git_repos`, `git_status`, `git_diff` (read-only). Also
-`terminal_list` / `terminal_read`, `limits`, `project_list`, `value_get`.
-**Not** exposed: secrets, env, kill, value set, decide, machine lock /
-sleep / restart / mute / volume / brightness / keep-awake.
+re-plan. The local stdio server exposes 20 tools:
+
+- Crew: `bot_list` `bot_read` `bot_send` `bot_new` `wait`
+- Terminals: `terminal_list` `terminal_read` `terminal_new`
+- Advice: `consult` (ask a consumer chat for planning/research — untrusted
+  advice, never an execution result) and `consult_complete` (the trusted
+  Grok-automation callback, not an operator-reply channel)
+- Read-only state: `limits` `git_repos` `git_status` `git_diff`
+  `project_list` `machines_list` (paired fleet machines) `providers_list`
+  `value_get` `file_get` (Helm file pointers — paths only, never contents)
+
+**Not** exposed on stdio: secrets, env, kill, value set, task_*,
+decide, machine lock / sleep / restart / mute / volume / brightness /
+keep-awake.
 
 Handshake methods: `initialize`, `notifications/initialized`, `tools/list`,
 `tools/call`.
@@ -63,14 +71,41 @@ solix mcp cloud on        # enable (the app keeps it connected)
 solix mcp cloud signin    # one-time Solix account sign-in, if needed
 solix mcp cloud status    # connected / connecting / off
 solix mcp cloud off
+solix mcp cloud signout   # forget the stored session
 ```
 
+The cloud server carries a different surface than local stdio: the core
+set (mate_send, bot_*, terminal_*, wait, limits, git_*, project_list,
+value_get — no consult, machines_list, providers_list, or file_get), plus
+the durable work queue and a grant-gated elevated group:
+
+- Tasks & routing: `task_submit` `task_list` `task_get` `task_approve`
+  `task_cancel` `route` (dry-run the provider pick)
+- Elevated — each category is refused until the operator enables its grant
+  at `https://mcp.solix.fyi/grants`:
+  - `"secrets"`: `secret_list` `secret_set` `secret_delete` `secret_apply`
+    (values cross the relay write-only, never read back)
+  - `"kill"`: `terminal_kill` `bot_kill`
+  - `"values"`: `value_set` `value_delete`
+  - `"machine"`: `machine_control` (lock, sleep, restart, display, mute,
+    volume, brightness, keep_awake)
+
+### Local HTTP MCP
+
+`solix mcp --http [host:port]` serves the same Streamable HTTP shape on
+this machine for clients that can't spawn stdio. Bearer token comes from
+`SOLIX_MCP_TOKEN` or `~/Library/Application Support/Solix/mcp-token`.
+`--expose` bolts on a personal Cloudflare tunnel — a public URL straight
+to this machine; prefer `mcp cloud on` (the multi-tenant bridge) unless
+a personal tunnel is exactly what's needed.
+
 The menu bar's "MCP" row and Settings → Messages → MCP Cloud do the same
-thing without a terminal. Sign-in uses the Solix account (email + password,
-same as the iPhone app); the session persists in
+thing without a terminal. `signin` opens the Solix page (Google/Apple)
+once; the session persists in
 `~/Library/Application Support/Solix/mcp-cloud-auth.json`.
-`solix mcp --cloud` runs the same bridge in the foreground for debugging —
-it dies with the terminal. Plugin `.mcp.json` already points at
+`solix mcp --cloud [--url https://mcp.solix.fyi]` runs the same bridge in
+the foreground for debugging — it dies with the terminal, and `--logout`
+forgets the stored session. Plugin `.mcp.json` already points at
 `https://mcp.solix.fyi/mcp`; complete OAuth when the client asks.
 
 ### ChatGPT

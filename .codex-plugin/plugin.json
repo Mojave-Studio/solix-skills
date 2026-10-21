@@ -1,6 +1,6 @@
 {
   "name": "solix",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "Drive a Solix host — persistent terminals, a coding-agent crew with a First Mate orchestrator, projects, shared memory, and Helm registers — through the Solix MCP and CLI skill set.",
   "author": {
     "name": "Mojave Studio",
@@ -15,13 +15,15 @@
   "interface": {
     "displayName": "Solix",
     "shortDescription": "Operate a Solix host",
-    "longDescription": "Control a Solix host from chat: list and read persistent terminals, send verified briefs to the First Mate orchestrator, spawn worker agents on installed coding CLIs, check provider usage limits, list projects, and inspect uncommitted git diffs. Requires a Solix account and a host on your machine running `solix mcp --cloud`. Secret values and destructive machine controls are never exposed through the MCP.",
+    "longDescription": "Control a Solix host from chat: list and read persistent terminals, send verified briefs to the First Mate orchestrator, spawn worker agents on installed coding CLIs, submit work to the routed task queue, consult consumer chat advisers, check provider usage limits, list projects, and inspect uncommitted git diffs. Requires a Solix account and a host on your machine running `solix mcp cloud on`. Elevated tools — secrets, kill, value writes, machine control — run only while the operator holds the matching grant open at mcp.solix.fyi/grants, and secret values are never returned.",
     "developerName": "Mojave Studio",
     "category": "Developer Tools",
     "capabilities": [
       "List and read persistent terminals",
       "Send work to the First Mate orchestrator",
       "Spawn and supervise coding agents",
+      "Submit, approve, and track routed tasks",
+      "Consult consumer chat advisers",
       "Check provider usage limits",
       "Inspect uncommitted git diffs"
     ],
@@ -32,6 +34,7 @@
     "defaultPrompt": [
       "List my Solix terminals and their states.",
       "Tell my First Mate what to work on next.",
+      "Submit a task to fix the login redirect bug.",
       "How much is left in my usage windows?"
     ],
     "brandColor": "#111111",
