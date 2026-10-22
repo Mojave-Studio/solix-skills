@@ -64,9 +64,9 @@ CREW
   solix bot land|takeoff <bot>                park for later / resume in place
   solix bot rename <bot> <name> | bot kill <bot>
   solix mate [--project <name>] [--provider P] [--model M]
-             [--name n] [--instructions t] [--paperclip|--no-paperclip]
-             [--no-attach]                    wake the First Mate — --name mints
-                                              a specialist mate (git, iMessage)
+             [--instructions t] [--paperclip|--no-paperclip]
+             [--no-attach]                    wake the First Mate — there is
+                                              only ever the one
   solix providers                             installed agent CLIs, cheapest
                                               model, cost tier, promos
   solix limits [--history]                    usage windows: % left, resets, walls
