@@ -1,0 +1,284 @@
+{
+  ".claude-plugin/marketplace.json": {
+    "mtime": 1791793577.162853,
+    "seen": 1793070390.333144,
+    "ast_hash": "fa32e2635f638e07674fc81f88a1c1db",
+    "semantic_hash": ""
+  },
+  ".codex-plugin/plugin.json": {
+    "mtime": 1792572592.8513904,
+    "seen": 1793070390.33315,
+    "ast_hash": "3a1dc8f4d6a62cde6580ac334c1b5449",
+    "semantic_hash": ""
+  },
+  ".devin-plugin/plugin.json": {
+    "mtime": 1792572718.801749,
+    "seen": 1793070390.333153,
+    "ast_hash": "613204c3cc4dd7665eb259fc2dab8326",
+    "semantic_hash": ""
+  },
+  ".mcp.json": {
+    "mtime": 1792297156.967023,
+    "seen": 1793070390.333154,
+    "ast_hash": "d314192c7f38bf3f9fb22b0b1d0487e1",
+    "semantic_hash": ""
+  },
+  "claude/.claude-plugin/plugin.json": {
+    "mtime": 1792572718.8921595,
+    "seen": 1793070390.333156,
+    "ast_hash": "591e5036bb40641eaed89fcd38538576",
+    "semantic_hash": ""
+  },
+  "claude/.mcp.json": {
+    "mtime": 1791787870.5644722,
+    "seen": 1793070390.333157,
+    "ast_hash": "67a4c8072c6a84797c6de7cace3b14da",
+    "semantic_hash": ""
+  },
+  "install.sh": {
+    "mtime": 1790411431.7429934,
+    "seen": 1793070390.3331578,
+    "ast_hash": "53570fd6dd95c0e0df919d231f397f64",
+    "semantic_hash": ""
+  },
+  "mcp.json": {
+    "mtime": 1792297156.888105,
+    "seen": 1793070390.33316,
+    "ast_hash": "065e40dac051789111acd531cba2f380",
+    "semantic_hash": ""
+  },
+  "plugin.json": {
+    "mtime": 1792572586.6975923,
+    "seen": 1793070390.3331609,
+    "ast_hash": "f1c1c8306bb53b15065b20444670e20b",
+    "semantic_hash": ""
+  },
+  "scripts/sync-claude-plugin.sh": {
+    "mtime": 1792297148.0724158,
+    "seen": 1793070390.333162,
+    "ast_hash": "4302d9568406cef92092a1f7e72a6a13",
+    "semantic_hash": ""
+  },
+  "README.md": {
+    "mtime": 1792297191.6343977,
+    "seen": 1793070390.333163,
+    "ast_hash": "4a8dff44e19f8045051712f317d9a7b4",
+    "semantic_hash": ""
+  },
+  "claude/README.md": {
+    "mtime": 1791793850.919841,
+    "seen": 1793070390.3331652,
+    "ast_hash": "05d7af5d23e5a9eaaec881bd144406de",
+    "semantic_hash": ""
+  },
+  "claude/skills/agents/SKILL.md": {
+    "mtime": 1792572729.0366406,
+    "seen": 1793070390.3331661,
+    "ast_hash": "147cdcda34ec3330aa40a512339c3133",
+    "semantic_hash": ""
+  },
+  "claude/skills/assign/SKILL.md": {
+    "mtime": 1792572729.0463154,
+    "seen": 1793070390.333168,
+    "ast_hash": "c8bf2ec9452c0bb21c6f8b3f2b383200",
+    "semantic_hash": ""
+  },
+  "claude/skills/command-build/SKILL.md": {
+    "mtime": 1792572729.0570211,
+    "seen": 1793070390.333169,
+    "ast_hash": "fee9940bbdb5fa9f4b4372f461b26cb8",
+    "semantic_hash": ""
+  },
+  "claude/skills/first-mate/SKILL.md": {
+    "mtime": 1792572729.06761,
+    "seen": 1793070390.33317,
+    "ast_hash": "5607c2d6ece737427fd4fb3973927be4",
+    "semantic_hash": ""
+  },
+  "claude/skills/git/SKILL.md": {
+    "mtime": 1792572729.0768619,
+    "seen": 1793070390.333171,
+    "ast_hash": "e6691ac261d4115cd96b7d88025be0db",
+    "semantic_hash": ""
+  },
+  "claude/skills/handoff/SKILL.md": {
+    "mtime": 1792572729.0869796,
+    "seen": 1793070390.333172,
+    "ast_hash": "caca427efb745dde7c97978d824f885c",
+    "semantic_hash": ""
+  },
+  "claude/skills/helm/SKILL.md": {
+    "mtime": 1792572729.0967414,
+    "seen": 1793070390.333174,
+    "ast_hash": "d7e5b37ad0ac2e5b167017f3d2c78ee3",
+    "semantic_hash": ""
+  },
+  "claude/skills/join/SKILL.md": {
+    "mtime": 1792572729.1071696,
+    "seen": 1793070390.333175,
+    "ast_hash": "4955a5786abdd3391838ecd519815117",
+    "semantic_hash": ""
+  },
+  "claude/skills/land/SKILL.md": {
+    "mtime": 1792572729.118301,
+    "seen": 1793070390.3331761,
+    "ast_hash": "eed774047bb717369a5bf38cf93ea7b9",
+    "semantic_hash": ""
+  },
+  "claude/skills/load/SKILL.md": {
+    "mtime": 1792572729.1282394,
+    "seen": 1793070390.333177,
+    "ast_hash": "fe834c237cf6ce04d793883878e2a0c5",
+    "semantic_hash": ""
+  },
+  "claude/skills/mcp/SKILL.md": {
+    "mtime": 1792572729.138208,
+    "seen": 1793070390.333179,
+    "ast_hash": "2ff5853740161de64ddd819a9ad5e1ad",
+    "semantic_hash": ""
+  },
+  "claude/skills/revive/SKILL.md": {
+    "mtime": 1792572729.1486466,
+    "seen": 1793070390.33318,
+    "ast_hash": "154e917ebf7839f275cd110deb335292",
+    "semantic_hash": ""
+  },
+  "claude/skills/skills/SKILL.md": {
+    "mtime": 1792572729.1582265,
+    "seen": 1793070390.333181,
+    "ast_hash": "0e57b0ee8ba17c76f1b0b3780fbfa0c3",
+    "semantic_hash": ""
+  },
+  "claude/skills/solix/SKILL.md": {
+    "mtime": 1792572729.178493,
+    "seen": 1793070390.333183,
+    "ast_hash": "dfe2b42c6506935eeb7874d9ac7b0adc",
+    "semantic_hash": ""
+  },
+  "claude/skills/usage/SKILL.md": {
+    "mtime": 1792572729.1683369,
+    "seen": 1793070390.333184,
+    "ast_hash": "05bf98a4f661edf09c3550225b86b4ef",
+    "semantic_hash": ""
+  },
+  "skills/solix-agents/SKILL.md": {
+    "mtime": 1792297129.9250693,
+    "seen": 1793070390.333185,
+    "ast_hash": "1f15cf88c66b1f0e4b4f372d74ce6429",
+    "semantic_hash": ""
+  },
+  "skills/solix-assign/SKILL.md": {
+    "mtime": 1792297129.9255102,
+    "seen": 1793070390.3331861,
+    "ast_hash": "18a9bab4570d14eb200c9f89ef71b7fb",
+    "semantic_hash": ""
+  },
+  "skills/solix-command-build/SKILL.md": {
+    "mtime": 1792297129.9258816,
+    "seen": 1793070390.333187,
+    "ast_hash": "ec6df1063703d85da1ae25800c769b20",
+    "semantic_hash": ""
+  },
+  "skills/solix-first-mate/SKILL.md": {
+    "mtime": 1792477166.1312425,
+    "seen": 1793070390.333189,
+    "ast_hash": "03327c2da5641894ed4c8ff06baeb920",
+    "semantic_hash": ""
+  },
+  "skills/solix-git/SKILL.md": {
+    "mtime": 1792297129.9268382,
+    "seen": 1793070390.33319,
+    "ast_hash": "fda2f2bb219c3ba11c0274d927a9892e",
+    "semantic_hash": ""
+  },
+  "skills/solix-handoff/SKILL.md": {
+    "mtime": 1792297129.927191,
+    "seen": 1793070390.333191,
+    "ast_hash": "e9eb941fd1a47094d11379e8cc306a1f",
+    "semantic_hash": ""
+  },
+  "skills/solix-helm/SKILL.md": {
+    "mtime": 1792572562.3153927,
+    "seen": 1793070390.3331919,
+    "ast_hash": "39361a2dd18972f4dce576ab2e4677b6",
+    "semantic_hash": ""
+  },
+  "skills/solix-join/SKILL.md": {
+    "mtime": 1792297143.6308014,
+    "seen": 1793070390.333194,
+    "ast_hash": "21a81e324879343ca97723c301a16ce1",
+    "semantic_hash": ""
+  },
+  "skills/solix-land/SKILL.md": {
+    "mtime": 1792572568.3174837,
+    "seen": 1793070390.333195,
+    "ast_hash": "6240f5429153d15b163fba87f78b4d0d",
+    "semantic_hash": ""
+  },
+  "skills/solix-load/SKILL.md": {
+    "mtime": 1792477148.3561866,
+    "seen": 1793070390.333196,
+    "ast_hash": "79976c35778e524258f5b292e705de4f",
+    "semantic_hash": ""
+  },
+  "skills/solix-mcp/SKILL.md": {
+    "mtime": 1792572707.1967978,
+    "seen": 1793070390.333197,
+    "ast_hash": "70f1011c8749c5996927e278c33dc3ea",
+    "semantic_hash": ""
+  },
+  "skills/solix-revive/SKILL.md": {
+    "mtime": 1792297129.928905,
+    "seen": 1793070390.333198,
+    "ast_hash": "d7a8102067739384906fa8c1ba8f7e41",
+    "semantic_hash": ""
+  },
+  "skills/solix-skills/SKILL.md": {
+    "mtime": 1792297129.929262,
+    "seen": 1793070390.3332,
+    "ast_hash": "c6eada7a67b147039ae49091be7f3f18",
+    "semantic_hash": ""
+  },
+  "skills/solix-usage/SKILL.md": {
+    "mtime": 1792297129.9295683,
+    "seen": 1793070390.333201,
+    "ast_hash": "14f25f5f5ce4c767a43fc8f41bf77981",
+    "semantic_hash": ""
+  },
+  "skills/solix/SKILL.md": {
+    "mtime": 1792659632.300396,
+    "seen": 1793070390.333202,
+    "ast_hash": "8959b57d3d822635fd9e657c8413d526",
+    "semantic_hash": ""
+  },
+  "assets/solix-icon-dark.png": {
+    "mtime": 1791783758.7099583,
+    "seen": 1793070390.3332028,
+    "ast_hash": "8eceeb1fd126adb67d4b2f7323c28d0e",
+    "semantic_hash": ""
+  },
+  "assets/solix-icon-light.png": {
+    "mtime": 1791783758.696486,
+    "seen": 1793070390.333205,
+    "ast_hash": "3840fe369e610c0c11ff7e7de9d28340",
+    "semantic_hash": ""
+  },
+  "assets/wordmark-dark.png": {
+    "mtime": 1790411431.791898,
+    "seen": 1793070390.3332071,
+    "ast_hash": "55ba8e813badbe1a8bc03de0ba4caf39",
+    "semantic_hash": ""
+  },
+  "assets/wordmark-light.png": {
+    "mtime": 1790411431.7925642,
+    "seen": 1793070390.333208,
+    "ast_hash": "3bac5b2b9b049c2a433feafd277a26f9",
+    "semantic_hash": ""
+  },
+  "claude/assets/solix-icon-light.png": {
+    "mtime": 1791786810.8406844,
+    "seen": 1793070390.333209,
+    "ast_hash": "3840fe369e610c0c11ff7e7de9d28340",
+    "semantic_hash": ""
+  }
+}
