@@ -1,5 +1,7 @@
 ---
 name: assign
+metadata:
+  internal: true
 description: Register this thread with the Solix First Mate — report the task up front, then stream milestone updates into its terminal so the orchestrator can track, redirect, or intervene.
 argument-hint: "[what this thread is working on]"
 ---

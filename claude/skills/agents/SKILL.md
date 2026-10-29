@@ -1,5 +1,7 @@
 ---
 name: agents
+metadata:
+  internal: true
 description: "Audit and unify agent instruction files (AGENTS.md, CLAUDE.md, GEMINI.md, Windsurf rules, …) so every agent CLI on this machine reads the same rules. Use when asked to unify agent memory/instructions, check instruction drift, or when agents are behaving differently because they read different rule files."
 argument-hint: "[audit | unify | unify for <dir>]"
 ---

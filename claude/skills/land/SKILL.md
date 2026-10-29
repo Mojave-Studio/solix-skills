@@ -1,5 +1,7 @@
 ---
 name: land
+metadata:
+  internal: true
 description: Land the current Solix terminal — close its window/viewers while the shell keeps running on the host, cached for later resume. Use when asked to land/park this terminal or wrap up and exit a Solix session.
 ---
 

@@ -1,5 +1,7 @@
 ---
 name: command-build
+metadata:
+  internal: true
 description: Save a shell command to the Solix Commands register so it can be opened and run later as a plain terminal — no agent chat required. Use when the user wants a reusable one-tap/one-command shortcut (a build, a deploy step, a log tail) rather than something an agent needs to reason about each time.
 argument-hint: "<name> — what the command should do"
 ---

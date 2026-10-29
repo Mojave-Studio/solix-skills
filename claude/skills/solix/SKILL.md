@@ -1,5 +1,7 @@
 ---
 name: solix
+metadata:
+  internal: true
 description: Drive a Solix host through the `solix` CLI — persistent terminals, a crew of coding agents with a First Mate orchestrator, the routed task queue, projects, shared memory, secrets, the Helm registers, fleet machines, git, and Mac controls. Use when coordinating agents, tasks, projects, or terminals on a machine running Solix, or when the user mentions Solix, the First Mate, or `solix`.
 ---
 
@@ -64,9 +66,9 @@ CREW
   solix bot land|takeoff <bot>                park for later / resume in place
   solix bot rename <bot> <name> | bot kill <bot>
   solix mate [--project <name>] [--provider P] [--model M]
-             [--name n] [--instructions t] [--paperclip|--no-paperclip]
-             [--no-attach]                    wake the First Mate — --name mints
-                                              a specialist mate (git, iMessage)
+             [--instructions t] [--paperclip|--no-paperclip]
+             [--no-attach]                    wake the First Mate — there is
+                                              only ever the one
   solix providers                             installed agent CLIs, cheapest
                                               model, cost tier, promos
   solix limits [--history]                    usage windows: % left, resets, walls

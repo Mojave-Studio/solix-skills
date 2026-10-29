@@ -1,5 +1,7 @@
 ---
 name: helm
+metadata:
+  internal: true
 description: Manage the user's Helm registers — commands, skills, secrets, values, docs, and files — through one verb-object grammar. Create, read, edit, use, rename, or delete any register entry from the solix CLI.
 argument-hint: "[verb-object + args — e.g. read-command, new-command deploy, use-command deploy]"
 ---

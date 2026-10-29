@@ -1,5 +1,7 @@
 ---
 name: join
+metadata:
+  internal: true
 description: Add this chat to a Solix project — loads the project's context (working files, secret permits, provider) and records the membership in the shared memory graph.
 argument-hint: "<project>"
 ---

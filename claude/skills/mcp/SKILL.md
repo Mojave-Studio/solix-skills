@@ -1,5 +1,7 @@
 ---
 name: mcp
+metadata:
+  internal: true
 description: "Wire Solix as an MCP server (`solix mcp` stdio, `solix mcp --cloud` to the production Cloudflare MCP) so a chat can send work to First Mate, or tidy MCP servers across agent CLIs — find failed, redundant, and disabled servers, remove the dead ones, and reauthorize expired OAuth. Use when asked to expose Solix to ChatGPT/Claude/Grok, add a Solix MCP connector, clean up, dedupe, fix, or reauth MCPs, or when an agent reports an MCP 'Needs authentication' or 'Failed to connect'."
 argument-hint: "[check | clean | reauth <name> | wire]"
 ---
