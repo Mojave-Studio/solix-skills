@@ -1,5 +1,7 @@
 ---
 name: load
+metadata:
+  internal: true
 description: Load Helm register items into THIS chat — secrets, skills, docs, values, commands, files, or the whole Helm. The operator picks all-vs-one in a Mac popup the agent never sees; selected items are inserted as incoming work.
 argument-hint: "[helm|secrets|skills|docs|values|commands|files]"
 ---

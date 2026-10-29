@@ -1,5 +1,7 @@
 ---
 name: first-mate
+metadata:
+  internal: true
 description: "Commandeer this agent as the Solix First Mate: inspect resources, start and supervise persistent terminals or coding agents, apply machine controls, and preserve durable handoff context. Use when an agent is asked to coordinate work through Solix."
 ---
 

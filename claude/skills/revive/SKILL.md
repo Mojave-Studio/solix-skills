@@ -1,5 +1,7 @@
 ---
 name: revive
+metadata:
+  internal: true
 description: Hand this chat's work to a fresh successor bot before running out of context — write the handoff, spawn a replacement on the same project, brief it, and exit cleanly instead of dying mid-task.
 argument-hint: "[extra context for the successor]"
 ---

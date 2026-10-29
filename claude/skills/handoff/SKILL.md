@@ -1,5 +1,7 @@
 ---
 name: handoff
+metadata:
+  internal: true
 description: Leave a durable handoff note in Solix memory — what this chat did, what's next, and what's blocking — so the next agent or session can pick up without re-reading transcripts.
 argument-hint: "[extra context]"
 ---
