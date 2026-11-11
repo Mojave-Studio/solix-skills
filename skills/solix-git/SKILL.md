@@ -13,11 +13,14 @@ requests map to the ops below — pick the repo with `--repo <path>` or
 ```text
 solix git status|log|diff [--staged] [--file f]
 solix git repos                                — every registered repo
+solix git scan                                 — walk the Mac's home folder,
+                                                register every repo found
 solix git commit [message|--ai] [--push] [--file f]…
 solix git fetch|push
 solix git branch                               — list, * = current
 solix git branch new <name> [--stay] [--from ref]
 solix git checkout <name>
+solix git merge <branch> [--into target] [--squash|--rebase]
 solix git branch rm <name>                     — safe -d, refuses unmerged
 solix git worktrees                            — every checkout, * = main
 solix git worktrees prune                      — drop merged worktrees

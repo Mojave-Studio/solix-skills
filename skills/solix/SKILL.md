@@ -159,11 +159,19 @@ GIT & MACHINE
   solix git status|repos|scan|log|diff|draft [--kind commit|pr|branch]
              |commit [--ai] [--push]|fetch|push|branch [new|rm]|checkout
              |pr [list|new [--ai]]|init|clone|add|exec -- <args>
-  solix machine lock | awake [30m|1h|4h|until|off|+N] | mute
-             | volume up|down | brightness <0-100>
+  solix machine status | lock | awake [duration|until|off|+duration]
+             | display sleep|wake | mute | volume up|down
+             | brightness|keyboard-brightness <0-100>
+             | cursor <off|infinite|1m|2.5m|5m|add-click|add-at-cursor|clear>
+             | allow-display-sleep on|off
+             | lid-close hibernate|stay-awake
+             | reduce-brightness-on-close on|off
+             | remote-ready-keep-awake on|off
   solix machine sleep --yes | restart --yes   ends sessions — ask first
-  solix sleep off|on|30m|1h|4h|+N             keep-awake — off defeats clamshell
-                                              sleep on battery too
+  solix keep-awake [status|on [duration]|until [duration]|duration|+duration|off]
+                                              toolbar-shared keep-awake session
+  solix sleep off|on|duration|+duration        compatibility alias — off defeats
+                                              clamshell sleep on battery too
 
 MCP
   solix mcp                                   stdio MCP server for local clients
@@ -176,9 +184,11 @@ MCP
 ```
 
 Specialised skills cover the deeper workflows — load them when the task
-calls for it: `solix-first-mate`, `solix-git`, `solix-helm`,
-`solix-load`, `solix-usage`, `solix-revive`, `solix-agents`,
-`solix-mcp`, `solix-skills`, `solix-land`.
+calls for it: `solix-first-mate`, `solix-git`, `solix-helm-<register>`
+(one per Helm register: `command`, `skill`, `secret`, `value`,
+`setting`, `doc`, `vault`, `file`), `solix-load`, `solix-usage`,
+`solix-revive`, `solix-agents`, `solix-mcp`, `solix-skills`,
+`solix-land`.
 
 ## Secrets without exposure
 
