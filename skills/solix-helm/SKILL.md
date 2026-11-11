@@ -36,9 +36,17 @@ new-secret       → solix secret set <name>            (value on stdin — neve
 read-secret      → solix secret list                  (names + kinds only,
                    values are unreadable by design — that includes you)
 edit-secret      → solix secret set <name>            (overwrite)
-use-secret       → in terminal input, type the marker `solix:pass:<name>` —
-                   the host injects the value at a concealed prompt; you
-                   never see it. Needs a permit: `solix secret grant`.
+use-secret       → only at a prompt that is ALREADY concealed (no-echo —
+                   e.g. a running `read -s`, `ssh-add`, `login`), type the
+                   marker `solix:pass:<name>`; the host substitutes the
+                   value there and you never see it. Needs a permit:
+                   `solix secret grant`. Typed anywhere else (a normal
+                   echoing shell prompt) the host refuses and leaves the
+                   marker text as-is — it does NOT create a concealed
+                   prompt for you. To insert straight into a terminal's
+                   current prompt from outside, use `solix pass <target>
+                   <name>` instead — it performs the same no-echo check
+                   and fails loudly if the prompt doesn't qualify.
 rename-secret    → solix secret set <new> then `solix secret rm <old>`
 delete-secret    → solix secret rm <name>
 
