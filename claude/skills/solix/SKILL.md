@@ -190,7 +190,7 @@ calls for it: `solix-first-mate`, `solix-git`, `solix-helm-<register>`
 (one per Helm register: `command`, `skill`, `secret`, `value`,
 `setting`, `doc`, `vault`, `file`), `solix-load`, `solix-usage`,
 `solix-revive`, `solix-agents`, `solix-mcp`, `solix-skills`,
-`solix-land`.
+`solix-land`, `solix-killer`.
 
 ## Secrets without exposure
 
@@ -238,9 +238,13 @@ Slash commands in the `solix:` namespace act on THIS chat:
 /solix:first-mate   become the First Mate orchestrator
 /solix:join <proj>  add this chat to a Solix project
 /solix:assign       put this thread under First Mate supervision
-/solix:handoff      leave a durable note for the next agent
+/solix:handoff [harness] [model]  leave a durable note for the next
+                    agent — with a harness, spawn a successor that
+                    continues the work
 /solix:revive       hand off to a fresh successor before context runs out
 /solix:land         land this terminal — windows close, shell keeps running
+/solix:killer       kill this terminal when the agent finishes — PTY
+                    destroyed, no resume
 /solix:load-helm    insert every Helm register into this chat
 /solix:load-secrets operator picks all secrets or one (Mac popup)
 /solix:load-skills  operator picks all skills or one

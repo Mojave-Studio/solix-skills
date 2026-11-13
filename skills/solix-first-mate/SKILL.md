@@ -175,25 +175,41 @@ blocker for whoever reads it next. Errors after prompting an agent (a dead
 provider, a wedged session) are yours to fix: revive, re-prompt, or
 re-route the model, and only alert the operator when the call is theirs.
 
-Pre-wall pauses come to you — the host freezes a worker's terminal
-(SIGSTOP, every group on its tty) when its provider's base window hits
-~97% used, then pages you: `[solix] Monitor — … paused at N% used …`.
-Take the call to the operator. "Continue" = `solix send` it anything —
-input thaws a limit-paused terminal; the rest of the window burns down
-to the wall and the re-route below applies. "Move" = send it a
-state-snapshot request first (the thaw spends its last few percent
-writing what's done / files touched / what's next), `solix read` the
-snapshot back, then re-route (see below). Operator silent? The host
-thaws it itself if the window reopens; a real wall still lands as
-`.limited`.
+Pre-wall, the host splits by who spawned the worker. A worker the crew
+spawned — task dispatch, `solix bot new` inside a crew terminal, or a
+`solix new` shell a bot opened that crewed up once an agent landed in it
+— gets the graceful off-ramp at ~97% used:
+the host Esc-interrupts its turn and pastes a wrap-up brief asking for
+a compact state snapshot, then pages you that it's underway:
+`[solix] Monitor — worker "…" is at N% used … asked to snapshot its
+progress for handoff`. Informational, not a decision — the wall's own
+re-route below carries the snapshot into the successor.
 
-A walled worker is a re-route, not a wait — and for work delegated
-through `solix task new`, the host already does it: a task's worker that
+A worker without a crew parent — a bare `solix bot new` or `solix new`
+from the operator's own shell, an adopted foreign terminal, a watched
+session — still freezes (SIGSTOP, every group on its tty) at ~97% used,
+then pages you: `[solix] Monitor — … paused at N% used …`. Take the call to the
+operator. "Continue" = `solix send` it anything — input thaws a
+limit-paused terminal; the rest of the window burns down to the wall
+and the re-route below applies. "Move" = send it a state-snapshot
+request first (the thaw spends its last few percent writing what's
+done / files touched / what's next), `solix read` the snapshot back,
+then re-route (see below). Operator silent? The host thaws it itself
+if the window reopens; a real wall still lands as `.limited`.
+
+A walled worker is a re-route, not a wait — and only for work the crew
+launched. A task's worker, or a `solix new` shell a bot opened, that
 hits a wall is automatically moved to the next open provider+model, the
 task record is rebound to the successor (`solix task show <id>` shows
 the reroute in its event history), and progress isn't lost. Nothing for
 you to do but notice, unless every provider is walled — `solix limits`
 says so, and the task self-resumes at reset.
+
+An agent window the operator opened by hand is different: it crews up
+parented to you but carries no launch mark, so at the wall it parks
+`.limited` and waits out the reset — the host does not kill it for a
+continuation. Moving it is your call: `solix read` its tail, snapshot
+first if it's mid-task, then the manual reroute below.
 
 For a worker spawned the old way (bare `solix bot new`, outside the task
 graph), the host doesn't reroute it for you: `solix read` its tail for
