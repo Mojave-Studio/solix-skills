@@ -187,15 +187,11 @@ re-route below carries the snapshot into the successor.
 
 A worker without a crew parent — a bare `solix bot new` or `solix new`
 from the operator's own shell, an adopted foreign terminal, a watched
-session — still freezes (SIGSTOP, every group on its tty) at ~97% used,
-then pages you: `[solix] Monitor — … paused at N% used …`. Take the call to the
-operator. "Continue" = `solix send` it anything — input thaws a
-limit-paused terminal; the rest of the window burns down to the wall
-and the re-route below applies. "Move" = send it a state-snapshot
-request first (the thaw spends its last few percent writing what's
-done / files touched / what's next), `solix read` the snapshot back,
-then re-route (see below). Operator silent? The host thaws it itself
-if the window reopens; a real wall still lands as `.limited`.
+session — is the operator's own: the host leaves it running at ~97%
+used, no freeze and no handoff ask, so they can still send it one more
+prompt. It parks `.limited` only if it actually hits the wall, and
+moving it then is your call — `solix read` its tail, snapshot first if
+it's mid-task, then the manual reroute below.
 
 A walled worker is a re-route, not a wait — and only for work the crew
 launched. A task's worker, or a `solix new` shell a bot opened, that
